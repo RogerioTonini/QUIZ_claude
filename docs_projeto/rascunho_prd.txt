@@ -1,0 +1,5 @@
+Iniciar um processo de Brainstorm para apoiar no desenvolvimento de um QUIZZ WEB sobre o Claude Code.
+Objetivo: 
+Fazer um quizz de pergunta verdadeiro ou falso sobre Claude Code.
+As perguntas incluem desde iniciante (negócio) até perguntas mais avançadas.
+Ao final gerar um arquivo **prd.md** em C:\QUIZZ\.llm\ que será consumido pelo Claude Code para construir o projeto. Esse prd precisa ter informações de negócio e técnicas.

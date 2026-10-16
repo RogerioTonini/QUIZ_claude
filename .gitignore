@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+
+# build / tooling
+dist/
+*.tsbuildinfo
+coverage/
+
+# playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# env
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel
+
+# os / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# local course material (large binaries)
+docs_projeto/*.pdf
+
+# claude code local worktrees
+.claude/worktrees/
