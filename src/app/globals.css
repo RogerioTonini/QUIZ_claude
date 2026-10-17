@@ -52,6 +52,11 @@ body {
   outline-offset: 2px;
 }
 
+/* Programmatic focus targets (e.g. the question heading) aren't controls; no ring. */
+[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

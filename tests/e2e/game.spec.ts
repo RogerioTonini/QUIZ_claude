@@ -9,6 +9,8 @@ test.describe("game", () => {
 
     for (let i = 1; i <= 10; i++) {
       await expect(page.getByText(`Pergunta ${i} de 10`)).toBeVisible();
+      // After "Next", focus moves to the new statement so screen readers announce it.
+      if (i > 1) await expect(statementHeading(page)).toBeFocused();
       const q = questionByStatement(
         (await statementHeading(page).textContent()) ?? "",
       );
