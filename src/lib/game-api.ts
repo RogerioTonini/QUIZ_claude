@@ -49,6 +49,22 @@ export type CreatedGame = {
   timePerQuestionSec: number;
 };
 
+export type SubmittedEntry = {
+  entryId: string;
+  /** Position on the level's all-time board. */
+  rank: number;
+};
+
+export type LeaderboardRow = {
+  id: string;
+  rank: number;
+  nickname: string;
+  score: number;
+  correctCount: number;
+  totalTimeMs: number;
+  createdAt: string;
+};
+
 /** Failed API call; `code` is the PRD error code, or "NETWORK" when no response arrived. */
 export class GameApiError extends Error {
   constructor(
@@ -101,4 +117,11 @@ export function sendAnswer(
       body: JSON.stringify(body),
     },
   );
+}
+
+export function submitLeaderboardEntry(gameId: string, nickname: string) {
+  return request<SubmittedEntry>("/api/leaderboard", {
+    method: "POST",
+    body: JSON.stringify({ gameId, nickname }),
+  });
 }

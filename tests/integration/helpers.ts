@@ -2,6 +2,10 @@ import { POST as createGameRoute } from "@/app/api/games/route";
 import { GET as getGameRoute } from "@/app/api/games/[id]/route";
 import { POST as answerRoute } from "@/app/api/games/[id]/answer/route";
 import { GET as summaryRoute } from "@/app/api/games/[id]/summary/route";
+import {
+  GET as getLeaderboardRoute,
+  POST as postLeaderboardRoute,
+} from "@/app/api/leaderboard/route";
 import { db } from "@/lib/db";
 
 const BASE = "http://localhost/api/games";
@@ -51,6 +55,22 @@ export function postAnswer(id: string, body: unknown) {
 export function getSummary(id: string, locale?: string) {
   const query = locale ? `?locale=${locale}` : "";
   return summaryRoute(new Request(`${BASE}/${id}/summary${query}`), params(id));
+}
+
+export function postEntry(body: unknown, ip = nextIp()) {
+  return postLeaderboardRoute(
+    new Request("http://localhost/api/leaderboard", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-forwarded-for": ip },
+      body: JSON.stringify(body),
+    }),
+  );
+}
+
+export function getLeaderboard(query: string) {
+  return getLeaderboardRoute(
+    new Request(`http://localhost/api/leaderboard?${query}`),
+  );
 }
 
 export async function startGame(

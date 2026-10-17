@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { routing } from "@/i18n/routing";
+import { nicknameProblem } from "@/lib/nickname";
 
 export const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 export type Level = (typeof LEVELS)[number];
@@ -60,3 +61,26 @@ export const AnswerInput = z.object({
 
 /** Optional `?locale=`; absent means the game's own locale. */
 export const LocaleQuery = LocaleSchema.optional();
+
+export const NicknameSchema = z
+  .string()
+  .transform((value) => value.trim())
+  .superRefine((value, ctx) => {
+    const problem = nicknameProblem(value);
+    if (problem)
+      ctx.addIssue({ code: "custom", message: `nickname.${problem}` });
+  });
+
+export const LeaderboardEntryInput = z.object({
+  gameId: z.string().min(1),
+  nickname: NicknameSchema,
+});
+
+export const PERIODS = ["week", "all"] as const;
+export type Period = (typeof PERIODS)[number];
+
+export const LeaderboardQuery = z.object({
+  level: z.enum(GAME_LEVELS),
+  period: z.enum(PERIODS).default("week"),
+  limit: z.coerce.number().int().min(1).max(50).default(50),
+});
