@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
+import { locale } from "next/root-params";
 import { useTranslations } from "next-intl";
 import { LevelPicker, type LevelOption } from "@/components/game/LevelPicker";
 import { Link } from "@/i18n/navigation";
+import { alternates } from "@/lib/seo";
 import { BASE_POINTS } from "@/server/game/scoring";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return { alternates: alternates(await locale()) };
+}
 
 const OPTIONS: LevelOption[] = [
   { level: "beginner", basePoints: BASE_POINTS.beginner },
@@ -22,12 +29,18 @@ export default function HomePage() {
         <p className="text-lg text-muted">{t("subtitle")}</p>
       </section>
       <LevelPicker options={OPTIONS} />
-      <p className="text-center">
+      <p className="flex flex-wrap justify-center gap-x-6 gap-y-2">
         <Link
           href="/leaderboard"
           className="text-accent underline underline-offset-2"
         >
           {t("leaderboard")}
+        </Link>
+        <Link
+          href="/how-it-works"
+          className="text-accent underline underline-offset-2"
+        >
+          {t("howItWorks")}
         </Link>
       </p>
     </div>

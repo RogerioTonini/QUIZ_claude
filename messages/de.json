@@ -1,10 +1,12 @@
 {
   "Metadata": {
     "title": "Claude Code Quiz — Wahr oder Falsch",
-    "description": "Teste dein Wissen über Claude Code in einem kurzen Wahr-oder-Falsch-Quiz."
+    "description": "Teste dein Wissen über Claude Code in einem kurzen Wahr-oder-Falsch-Quiz.",
+    "siteName": "Claude Code Quiz"
   },
   "Header": {
-    "title": "Claude Code Quiz"
+    "title": "Claude Code Quiz",
+    "howItWorks": "So funktioniert's"
   },
   "LanguageSwitcher": {
     "label": "Sprache"
@@ -25,7 +27,8 @@
     "mixedPoints": "100 bis 200 Punkte pro richtiger Antwort",
     "play": "Spielen",
     "starting": "Spiel wird gestartet…",
-    "leaderboard": "Rangliste ansehen"
+    "leaderboard": "Rangliste ansehen",
+    "howItWorks": "So funktioniert's"
   },
   "StartGame": {
     "rateLimited": "Du hast in der letzten Stunde zu viele Spiele gestartet. Bitte versuche es später erneut.",
@@ -91,7 +94,8 @@
     "expiredText": "Spiele ohne Aktivität für 2 Stunden werden beendet.",
     "notFoundTitle": "Spiel nicht gefunden",
     "notFoundText": "Der Link ist möglicherweise falsch oder das Spiel existiert nicht mehr.",
-    "newGame": "Neues Spiel"
+    "newGame": "Neues Spiel",
+    "title": "Spiel"
   },
   "Result": {
     "title": "Ergebnis",
@@ -148,5 +152,39 @@
     "you": "(du)",
     "empty": "Noch niemand hier. Spiel und sei der Erste!",
     "play": "Spielen"
+  },
+  "HowItWorks": {
+    "title": "So funktioniert's",
+    "rulesTitle": "Regeln",
+    "rules": {
+      "questions": "Jedes Spiel hat {count} Aussagen über Claude Code. Beantworte jede innerhalb von {seconds} Sekunden mit Wahr oder Falsch.",
+      "levels": "Wähle ein Level: Einsteiger, Fortgeschritten, Experte oder Gemischt (3 Einsteiger-, 4 Fortgeschrittenen- und 3 Expertenfragen).",
+      "timeout": "Läuft die Zeit ab, zählt die Antwort als falsch.",
+      "feedback": "Nach jeder Antwort siehst du die richtige Antwort, eine Erklärung und einen Link zur offiziellen Dokumentation.",
+      "keyboard": "Tastenkürzel: {trueKey} = Wahr, {falseKey} = Falsch, Enter = weiter.",
+      "serverClock": "Die Uhr läuft auf dem Server: Neu laden setzt dieselbe Frage fort, ohne den Timer neu zu starten."
+    },
+    "scoringTitle": "Punkte",
+    "scoring": {
+      "base": "Basispunkte pro richtiger Antwort: {beginner} für Einsteiger, {intermediate} für Fortgeschritten und {advanced} für Experte. Bei Gemischt zählt jede Frage mit der Basis ihres eigenen Levels.",
+      "time": "Zeitbonus: bis zu 50 % der Basis, proportional zur verbleibenden Zeit.",
+      "streak": "Serienbonus: ab der 3. richtigen Antwort in Folge +10 % der Basis pro Antwort, bis zu +50 %.",
+      "wrong": "Eine falsche Antwort oder Zeitablauf gibt 0 Punkte und setzt die Serie zurück."
+    },
+    "maxScore": "Theoretische Höchstpunktzahl: {points, number} Punkte (Level Experte, 10 von 10, sofort beantwortet).",
+    "leaderboardTitle": "Rangliste",
+    "leaderboard": "Nach dem Spiel hast du 30 Minuten Zeit, es mit einem Spitznamen in die Rangliste einzutragen. Kein Konto nötig.",
+    "play": "Jetzt spielen"
+  },
+  "NotFound": {
+    "title": "Seite nicht gefunden",
+    "text": "Die Adresse ist vielleicht falsch, oder die Seite existiert nicht mehr.",
+    "home": "Zur Startseite"
+  },
+  "ErrorPage": {
+    "title": "Etwas ist schiefgelaufen",
+    "text": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es gleich noch einmal.",
+    "retry": "Erneut versuchen",
+    "home": "Zur Startseite"
   }
 }

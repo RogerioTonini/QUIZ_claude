@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { locale as localeParam } from "next/root-params";
 import { notFound } from "next/navigation";
@@ -8,6 +9,7 @@ import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { SITE_URL } from "@/lib/seo";
 import { themeInitScript } from "@/lib/theme";
 import "../globals.css";
 
@@ -26,8 +28,21 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
+  const locale = await localeParam();
   const t = await getTranslations("Metadata");
-  return { title: t("title"), description: t("description") };
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { default: t("title"), template: `%s · ${t("siteName")}` },
+    description: t("description"),
+    openGraph: {
+      type: "website",
+      siteName: t("siteName"),
+      title: t("title"),
+      description: t("description"),
+      locale: locale.replace("-", "_"),
+    },
+    twitter: { card: "summary_large_image" },
+  };
 }
 
 export default async function LocaleLayout({
@@ -49,11 +64,17 @@ export default async function LocaleLayout({
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider>
           <header className="border-b border-border">
-            <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-2">
+            <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 py-2">
               <Link href="/" className="font-semibold">
                 {t("Header.title")}
               </Link>
               <div className="flex items-center gap-2">
+                <Link
+                  href="/how-it-works"
+                  className="inline-flex min-h-11 items-center rounded-md px-2 text-sm font-medium text-muted hover:bg-surface hover:text-foreground"
+                >
+                  {t("Header.howItWorks")}
+                </Link>
                 <LanguageSwitcher />
                 <ThemeToggle />
               </div>
@@ -69,6 +90,7 @@ export default async function LocaleLayout({
             </div>
           </footer>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
