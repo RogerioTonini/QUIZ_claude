@@ -1,0 +1,24 @@
+{
+  "Metadata": {
+    "title": "Claude Code Quiz — Verdadeiro ou Falso",
+    "description": "Teste o que você sabe sobre o Claude Code em um quiz rápido de Verdadeiro ou Falso."
+  },
+  "Header": {
+    "title": "Claude Code Quiz"
+  },
+  "LanguageSwitcher": {
+    "label": "Idioma"
+  },
+  "ThemeToggle": {
+    "toLight": "Mudar para o tema claro",
+    "toDark": "Mudar para o tema escuro"
+  },
+  "Footer": {
+    "disclaimer": "Quiz não oficial, criado pela comunidade; não afiliado à Anthropic.",
+    "privacy": "Privacidade: guardamos apenas o apelido público que você escolher para o ranking. Seu IP é usado só em forma de hash, contra abuso."
+  },
+  "Home": {
+    "title": "Quanto você sabe sobre o Claude Code?",
+    "subtitle": "10 afirmações, 30 segundos cada. Verdadeiro ou falso?"
+  }
+}

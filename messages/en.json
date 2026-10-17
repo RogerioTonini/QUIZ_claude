@@ -1,0 +1,24 @@
+{
+  "Metadata": {
+    "title": "Claude Code Quiz — True or False",
+    "description": "Test what you know about Claude Code in a quick True or False quiz."
+  },
+  "Header": {
+    "title": "Claude Code Quiz"
+  },
+  "LanguageSwitcher": {
+    "label": "Language"
+  },
+  "ThemeToggle": {
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme"
+  },
+  "Footer": {
+    "disclaimer": "Unofficial, community-made quiz; not affiliated with Anthropic.",
+    "privacy": "Privacy: we only store the public nickname you choose for the leaderboard. Your IP is used only as a hash, to prevent abuse."
+  },
+  "Home": {
+    "title": "How well do you know Claude Code?",
+    "subtitle": "10 statements, 30 seconds each. True or false?"
+  }
+}
