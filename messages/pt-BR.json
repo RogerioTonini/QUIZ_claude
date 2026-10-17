@@ -19,6 +19,101 @@
   },
   "Home": {
     "title": "Quanto você sabe sobre o Claude Code?",
-    "subtitle": "10 afirmações, 30 segundos cada. Verdadeiro ou falso?"
+    "subtitle": "10 afirmações, 30 segundos cada. Verdadeiro ou falso?",
+    "chooseLevel": "Escolha o nível",
+    "basePoints": "{points} pontos por acerto",
+    "mixedPoints": "100 a 200 pontos por acerto",
+    "play": "Jogar",
+    "starting": "Criando partida…"
+  },
+  "StartGame": {
+    "rateLimited": "Você iniciou muitas partidas na última hora. Tente de novo mais tarde.",
+    "error": "Não foi possível iniciar a partida. Verifique sua conexão e tente de novo."
+  },
+  "Levels": {
+    "beginner": {
+      "name": "Iniciante",
+      "description": "O básico: o que é o Claude Code, onde ele roda e como começar."
+    },
+    "intermediate": {
+      "name": "Intermediário",
+      "description": "Fluxo de trabalho, comandos, CLAUDE.md e configurações."
+    },
+    "advanced": {
+      "name": "Avançado",
+      "description": "Hooks, MCP, subagents, permissões e automação."
+    },
+    "mixed": {
+      "name": "Misto",
+      "description": "3 perguntas de iniciante, 4 de intermediário e 3 de avançado."
+    }
+  },
+  "Categories": {
+    "fundamentals": "Fundamentos",
+    "business": "Negócios",
+    "workflow": "Fluxo de trabalho",
+    "commands": "Comandos",
+    "config": "Configuração",
+    "extensibility": "Extensibilidade",
+    "security": "Segurança",
+    "automation": "Automação"
+  },
+  "Answer": {
+    "true": "Verdadeiro",
+    "false": "Falso"
+  },
+  "Play": {
+    "loading": "Carregando pergunta…",
+    "progress": "Pergunta {current} de {total}",
+    "score": "Pontos",
+    "streak": "Sequência",
+    "answerGroup": "Sua resposta",
+    "trueKey": "V",
+    "falseKey": "F",
+    "keyboardHint": "Atalhos: {trueKey} = Verdadeiro, {falseKey} = Falso, Enter = próxima.",
+    "timeLeft": "Tempo restante",
+    "seconds": "{seconds} s",
+    "fiveSecondsLeft": "5 segundos restantes",
+    "correct": "Correto!",
+    "incorrect": "Incorreto",
+    "timedOut": "Tempo esgotado",
+    "correctAnswer": "Resposta correta: {answer}",
+    "pointsEarned": "+{points} pontos",
+    "breakdown": "base {base} + tempo {timeBonus} + sequência {streakBonus}",
+    "learnMore": "Saiba mais na documentação",
+    "newTab": "(abre em nova aba)",
+    "next": "Próxima",
+    "seeResult": "Ver resultado",
+    "networkError": "Não foi possível falar com o servidor.",
+    "retry": "Tentar de novo",
+    "expiredTitle": "Esta partida expirou",
+    "expiredText": "Partidas sem atividade por 2 horas são encerradas.",
+    "notFoundTitle": "Partida não encontrada",
+    "notFoundText": "O link pode estar errado ou a partida não existe mais.",
+    "newGame": "Nova partida"
+  },
+  "Result": {
+    "title": "Resultado",
+    "level": "Nível: {level}",
+    "score": "Pontuação",
+    "correct": "Acertos",
+    "fraction": "{correct}/{total}",
+    "time": "Tempo total",
+    "bestStreak": "Maior sequência",
+    "band": {
+      "low": "Continue explorando",
+      "good": "Bom trabalho",
+      "great": "Excelente",
+      "perfect": "Mestre do Claude Code"
+    },
+    "byCategory": "Desempenho por categoria",
+    "review": "Revisão",
+    "yourAnswer": "Sua resposta: {answer}",
+    "noAnswer": "nenhuma (tempo esgotado)",
+    "playAgain": "Jogar de novo",
+    "otherLevel": "Escolher outro nível",
+    "share": "Compartilhar",
+    "copied": "Texto copiado para a área de transferência.",
+    "shareText": "Fiz {score} pontos no Claude Code Quiz (nível {level})! {url}"
   }
 }

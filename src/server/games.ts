@@ -3,6 +3,7 @@ import type { Level as DbLevel } from "@/generated/prisma/enums";
 import type { Locale } from "@/i18n/routing";
 import { ApiError } from "@/lib/api";
 import { db } from "@/lib/db";
+import type { AnswerResult, CreatedGame, GameView } from "@/lib/game-api";
 import type { GameLevel } from "@/lib/zod-schemas";
 import {
   getAllQuestions,
@@ -10,17 +11,12 @@ import {
   toPublicQuestion,
 } from "@/server/content";
 import { drawQuestions, QUESTIONS_PER_GAME } from "@/server/game/draw";
-import {
-  remainingMs,
-  TIME_LIMIT_MS,
-  type Breakdown,
-} from "@/server/game/scoring";
+import { remainingMs, TIME_LIMIT_MS } from "@/server/game/scoring";
 import {
   applyAnswer,
   currentQuestionId,
   lastActivityAt,
   shouldExpire,
-  type GameStatus,
 } from "@/server/game/session";
 import {
   buildReview,
@@ -66,7 +62,7 @@ export async function createGame(input: {
   level: GameLevel;
   locale: Locale;
   ipHash: string;
-}) {
+}): Promise<CreatedGame> {
   const questionIds = drawQuestions(input.level, getAllQuestions());
   const game = await db.gameSession.create({
     data: {
@@ -83,18 +79,6 @@ export async function createGame(input: {
     timePerQuestionSec: TIME_LIMIT_MS / 1000,
   };
 }
-
-export type GameView = {
-  status: GameStatus;
-  index: number;
-  total: number;
-  score: number;
-  streak: number;
-  question?: ReturnType<typeof toPublicQuestion> & {
-    order: number;
-    remainingMs: number;
-  };
-};
 
 /**
  * Current state of a game. Serves the current question (starting its server-side timer) the
@@ -137,19 +121,6 @@ export async function getGameView(
   };
   return view;
 }
-
-export type AnswerResult = {
-  isCorrect: boolean;
-  correctAnswer: boolean;
-  explanation: string;
-  docUrl: string;
-  points: number;
-  breakdown: Breakdown;
-  score: number;
-  streak: number;
-  finished: boolean;
-  timedOut: boolean;
-};
 
 /** Scores the answer to the current question. Time is measured from the server's servedAt. */
 export async function submitAnswer(

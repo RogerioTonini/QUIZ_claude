@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-**`.llm/prd.md` is the source of truth** (pt-BR). Read it before doing anything. It defines a public True/False web quiz about Claude Code (3 levels + Mixed, 10 questions/game, 30s timer, server-side scoring, public leaderboard, pt-BR/en/de). The step-by-step plan for phases F1–F7 follows PRD §13. F1 (foundation: scaffold, i18n, layout, tooling, CI), F2 (question bank + content access) and F3 (Prisma schema, game logic, game API) are done; the game UI and the leaderboard are not built yet.
+**`.llm/prd.md` is the source of truth** (pt-BR). Read it before doing anything. It defines a public True/False web quiz about Claude Code (3 levels + Mixed, 10 questions/game, 30s timer, server-side scoring, public leaderboard, pt-BR/en/de). The step-by-step plan for phases F1–F7 follows PRD §13. F1 (foundation: scaffold, i18n, layout, tooling, CI), F2 (question bank + content access), F3 (Prisma schema, game logic, game API) and F4 (Home, Play and Result pages) are done; the leaderboard (F5) is not built yet.
 
 - Build in the phases of PRD §13 (F1 Foundation → F7 Deploy). Each phase must end with `pnpm lint`, `pnpm typecheck` and `pnpm test` all passing.
 - If something isn't covered by the PRD, choose the simplest option, record it in `docs/decisions.md` (next `Dxx` row, pt-BR) and keep going. Read the existing decisions first; they refine the PRD.
@@ -34,6 +34,8 @@ pnpm db:studio
 ```
 
 Single test: `pnpm vitest run tests/unit/messages.test.ts -t "<name>"`, or `pnpm playwright test tests/e2e/i18n.spec.ts -g "<name>"`.
+
+`tests/e2e/game.spec.ts` needs a database and an `IP_HASH_SALT`. Import `test`/`expect` from `tests/e2e/fixtures.ts` in specs that create games: it sends a random `x-forwarded-for` per test so the 20 games/h rate limit isn't shared (D27). Locally, without Neon, run a throwaway in-memory Postgres outside the repo (`npm i @electric-sql/pglite @electric-sql/pglite-socket` in a temp dir, then `node node_modules/@electric-sql/pglite-socket/dist/scripts/server.js --port 5433 --max-connections 20`), set `DATABASE_URL`/`DIRECT_URL` to `postgresql://postgres:postgres@127.0.0.1:5433/postgres?sslmode=disable` in the same PowerShell command, then `pnpm db:deploy` and `pnpm test:e2e`.
 
 Manual, not in CI: `node scripts/check-doc-urls.mts` checks that every `docUrl` in the question bank answers 2xx.
 
@@ -66,8 +68,9 @@ Browser (client components) → Route Handlers /api/* → src/server/** (pure ga
 - Game logic in `src/server/game/{draw,scoring,session,summary}.ts` is pure and unit-tested. Mixed games draw 3 beginner / 4 intermediate / 3 advanced questions, with no repeats. `src/server/games.ts` is the I/O layer (Prisma + content) the route handlers in `src/app/api/games/**` call; handlers stay thin (validate with the Zod schemas in `src/lib/zod-schemas.ts`, call the service, map `ApiError` via `handleApiError`). Answer submission uses conditional `updateMany` in a transaction so concurrent answers get 409 (D20).
 - Models: `GameSession` (IN_PROGRESS/FINISHED/EXPIRED; expires lazily after 2h idle), `GameAnswer` (`answer=null` means timeout; second answer → 409), `LeaderboardEntry` (one per `gameId`, only within 30 min of FINISHED; the "week" view covers the last 7 calendar days in UTC, per D05), `RateLimitHit` (Postgres sliding window keyed by `sha256(ip + IP_HASH_SALT)`; raw IPs are never stored).
 - API errors use the shape `{ "error": { "code", "message" } }` (`src/lib/api.ts`). The full contract is in PRD §6.5; `GET /api/games/:id` of a finished/expired game returns 200 with `status` and no `question` (D18).
+- UI (F4): `src/lib/game-api.ts` holds the API contract types and the client `fetch` helpers; server code imports the types from there (D22). Components live in `src/components/game/`. `/[locale]/play/[gameId]` renders the client state machine `PlayGame` (loading → question → feedback, plus error/expired/not found) inside `Suspense`; every question load is a fresh `GET`, so reloads and locale switches resume from the server. `/[locale]/result/[gameId]` is a Server Component that calls `getSummary` directly (D23). Pages and components that read runtime values (params, `usePathname`) must sit inside `Suspense` or the build fails (D25).
 - Leaderboard tie-break order: score desc → correctCount desc → totalTimeMs asc → createdAt asc.
-- Theme: an inline script in `<head>` (`src/lib/theme.ts`) adds the `dark` class to `<html>` before hydration, based on `localStorage.theme` or `prefers-color-scheme`. Tailwind's `dark:` variant targets that class. Use the color tokens from `globals.css` (`background`, `foreground`, `surface`, `muted`, `border`, `accent`), not raw colors.
+- Theme: an inline script in `<head>` (`src/lib/theme.ts`) adds the `dark` class to `<html>` before hydration, based on `localStorage.theme` or `prefers-color-scheme`. Tailwind's `dark:` variant targets that class. Use the color tokens from `globals.css` (`background`, `foreground`, `surface`, `muted`, `border`, `accent`, `success`, `danger`), not raw colors.
 
 ## i18n
 

@@ -11,6 +11,8 @@
   --border: #e2ddd5;
   --accent: #b5502f;
   --accent-foreground: #ffffff;
+  --success: #2e7d32;
+  --danger: #b42318;
 }
 
 .dark {
@@ -21,6 +23,8 @@
   --border: #3a3330;
   --accent: #e0855f;
   --accent-foreground: #1c1310;
+  --success: #6fcf7f;
+  --danger: #f97066;
 }
 
 @theme inline {
@@ -31,6 +35,8 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
