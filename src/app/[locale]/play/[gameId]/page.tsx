@@ -1,6 +1,14 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { PlayGame } from "@/components/game/PlayGame";
 import { PlaySkeleton } from "@/components/game/PlaySkeleton";
+import { noIndex } from "@/lib/seo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Play");
+  return { title: t("title"), robots: noIndex };
+}
 
 export default function PlayPage({
   params,

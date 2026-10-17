@@ -1,10 +1,12 @@
 {
   "Metadata": {
     "title": "Claude Code Quiz — True or False",
-    "description": "Test what you know about Claude Code in a quick True or False quiz."
+    "description": "Test what you know about Claude Code in a quick True or False quiz.",
+    "siteName": "Claude Code Quiz"
   },
   "Header": {
-    "title": "Claude Code Quiz"
+    "title": "Claude Code Quiz",
+    "howItWorks": "How it works"
   },
   "LanguageSwitcher": {
     "label": "Language"
@@ -25,7 +27,8 @@
     "mixedPoints": "100 to 200 points per correct answer",
     "play": "Play",
     "starting": "Starting game…",
-    "leaderboard": "View leaderboard"
+    "leaderboard": "View leaderboard",
+    "howItWorks": "How it works"
   },
   "StartGame": {
     "rateLimited": "You started too many games in the last hour. Please try again later.",
@@ -91,7 +94,8 @@
     "expiredText": "Games with no activity for 2 hours are closed.",
     "notFoundTitle": "Game not found",
     "notFoundText": "The link may be wrong or the game no longer exists.",
-    "newGame": "New game"
+    "newGame": "New game",
+    "title": "Game"
   },
   "Result": {
     "title": "Result",
@@ -148,5 +152,39 @@
     "you": "(you)",
     "empty": "Nobody here yet. Play and be the first!",
     "play": "Play"
+  },
+  "HowItWorks": {
+    "title": "How it works",
+    "rulesTitle": "Rules",
+    "rules": {
+      "questions": "Each game has {count} statements about Claude Code. For each one, answer True or False within {seconds} seconds.",
+      "levels": "Pick a level: Beginner, Intermediate, Advanced or Mixed (3 beginner, 4 intermediate and 3 advanced questions).",
+      "timeout": "If time runs out, the answer counts as wrong.",
+      "feedback": "After each answer you see the correct answer, an explanation and a link to the official documentation.",
+      "keyboard": "Keyboard shortcuts: {trueKey} = True, {falseKey} = False, Enter = next.",
+      "serverClock": "The clock runs on the server: reloading the page resumes the same question without restarting the timer."
+    },
+    "scoringTitle": "Scoring",
+    "scoring": {
+      "base": "Base points per correct answer: {beginner} for Beginner, {intermediate} for Intermediate and {advanced} for Advanced. In Mixed, each question is worth its own level's base.",
+      "time": "Time bonus: up to 50% of the base, proportional to the time left.",
+      "streak": "Streak bonus: from the 3rd correct answer in a row, +10% of the base per answer, up to +50%.",
+      "wrong": "A wrong answer or timeout scores 0 and resets the streak."
+    },
+    "maxScore": "Theoretical maximum score: {points, number} points (Advanced level, 10 out of 10, answering instantly).",
+    "leaderboardTitle": "Leaderboard",
+    "leaderboard": "When you finish, you have 30 minutes to add the game to the leaderboard with a nickname. No account needed.",
+    "play": "Play now"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "text": "The address may be wrong, or the page no longer exists.",
+    "home": "Back to home"
+  },
+  "ErrorPage": {
+    "title": "Something went wrong",
+    "text": "An unexpected error occurred. Please try again in a moment.",
+    "retry": "Try again",
+    "home": "Back to home"
   }
 }

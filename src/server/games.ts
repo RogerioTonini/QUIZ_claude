@@ -92,6 +92,7 @@ export async function getGameView(
   const game = await loadGame(id, now);
   const view: GameView = {
     status: game.status,
+    level: fromDbLevel(game.level),
     index: game.currentIndex,
     total: game.questionIds.length,
     score: game.score,
@@ -192,6 +193,7 @@ export async function submitAnswer(
     points: result.points,
     breakdown: result.breakdown,
     score: next.score,
+    correctCount: next.correctCount,
     streak: next.streak,
     finished: applied.finished,
     timedOut: result.timedOut,

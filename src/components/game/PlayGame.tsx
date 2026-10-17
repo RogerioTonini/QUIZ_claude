@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
+import { track } from "@/lib/analytics";
 import {
   type AnswerResult,
   fetchGame,
@@ -92,6 +93,18 @@ export function PlayGame({ gameId }: { gameId: string }) {
         answer: value,
         locale,
       });
+      track("question_answered", {
+        level: round.view.level,
+        correct: result.isCorrect,
+        timedOut: result.timedOut,
+      });
+      if (result.finished) {
+        track("game_finished", {
+          level: round.view.level,
+          score: result.score,
+          correct: result.correctCount,
+        });
+      }
       setState({
         kind: "feedback",
         result,
@@ -214,7 +227,11 @@ export function PlayGame({ gameId }: { gameId: string }) {
           onAnswer={(value) => void answer(value)}
         />
       ) : (
-        <Feedback result={state.result} onNext={next} />
+        <Feedback
+          result={state.result}
+          questionId={question.id}
+          onNext={next}
+        />
       )}
       <p aria-live="polite" className="sr-only">
         {outcome}

@@ -50,5 +50,8 @@ jobs:
         if: failure()
         with:
           name: playwright-report
-          path: playwright-report/
+          # The "github" reporter writes no HTML report; test-results/ has the traces and page snapshots.
+          path: |
+            playwright-report/
+            test-results/
           retention-days: 7

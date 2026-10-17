@@ -12,7 +12,8 @@ export type ApiErrorCode =
   | "QUESTION_NOT_SERVED"
   | "RATE_LIMITED"
   | "ALREADY_SUBMITTED"
-  | "SUBMISSION_CLOSED";
+  | "SUBMISSION_CLOSED"
+  | "INTERNAL";
 
 /** PRD §6.5 error shape: `{ error: { code, message } }`. */
 export function apiError(code: ApiErrorCode, message: string, status: number) {

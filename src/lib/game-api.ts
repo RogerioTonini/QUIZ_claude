@@ -17,6 +17,7 @@ export type QuestionView = {
 
 export type GameView = {
   status: GameStatus;
+  level: GameLevel;
   index: number;
   total: number;
   score: number;
@@ -38,6 +39,7 @@ export type AnswerResult = {
   points: number;
   breakdown: Breakdown;
   score: number;
+  correctCount: number;
   streak: number;
   finished: boolean;
   timedOut: boolean;

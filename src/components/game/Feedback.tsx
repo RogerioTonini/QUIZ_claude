@@ -2,14 +2,17 @@
 
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
+import { track } from "@/lib/analytics";
 import type { AnswerResult } from "@/lib/game-api";
 
 /** Outcome of one answer (RF04): icon, color and text, explanation, doc link and points. */
 export function Feedback({
   result,
+  questionId,
   onNext,
 }: {
   result: AnswerResult;
+  questionId: string;
   onNext: () => void;
 }) {
   const t = useTranslations();
@@ -57,6 +60,7 @@ export function Feedback({
           href={result.docUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => track("doc_link_clicked", { questionId })}
           className="text-accent underline underline-offset-2"
         >
           {t("Play.learnMore")}

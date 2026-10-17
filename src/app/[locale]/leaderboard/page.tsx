@@ -1,4 +1,6 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
+import { locale } from "next/root-params";
 import { connection } from "next/server";
 import { getTranslations } from "next-intl/server";
 import { LeaderboardTable } from "@/components/leaderboard/LeaderboardTable";
@@ -9,9 +11,18 @@ import {
   PERIODS,
   type Period,
 } from "@/lib/zod-schemas";
+import { alternates } from "@/lib/seo";
 import { getLeaderboard } from "@/server/leaderboard";
 
 type Props = PageProps<"/[locale]/leaderboard">;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Leaderboard");
+  return {
+    title: t("title"),
+    alternates: alternates(await locale(), "/leaderboard"),
+  };
+}
 
 export default async function LeaderboardPage({ searchParams }: Props) {
   const t = await getTranslations("Leaderboard");

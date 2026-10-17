@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { track } from "@/lib/analytics";
 import type { GameLevel } from "@/lib/zod-schemas";
 import { useStartGame } from "./useStartGame";
 
@@ -20,6 +21,7 @@ export function ResultActions({
   const [status, setStatus] = useState<string | null>(null);
 
   async function share() {
+    track("share_clicked", {});
     const origin = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
     const text = t("Result.shareText", {
       score,

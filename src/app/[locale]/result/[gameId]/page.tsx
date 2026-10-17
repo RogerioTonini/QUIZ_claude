@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { getFormatter, getTranslations } from "next-intl/server";
@@ -8,7 +9,13 @@ import { redirect } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { ApiError } from "@/lib/api";
 import { type GameSummary, getSummary } from "@/server/games";
+import { noIndex } from "@/lib/seo";
 import { getEntryForGame, isSubmissionOpen } from "@/server/leaderboard";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Result");
+  return { title: t("title"), robots: noIndex };
+}
 
 export default function ResultPage({
   params,

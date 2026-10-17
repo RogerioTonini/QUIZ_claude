@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import { apiError, handleApiError, parseJsonBody } from "@/lib/api";
 import { getClientIp, hashIp } from "@/lib/ip-hash";
+import { withLogging } from "@/lib/log";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { LeaderboardEntryInput, LeaderboardQuery } from "@/lib/zod-schemas";
 import { getLeaderboard, submitEntry } from "@/server/leaderboard";
 
 const ENTRIES_PER_HOUR = 10;
 
-export async function GET(request: Request) {
+export const GET = withLogging("/api/leaderboard", async (request: Request) => {
   const params = new URL(request.url).searchParams;
   const parsed = LeaderboardQuery.safeParse({
     level: params.get("level") ?? undefined,
@@ -27,20 +28,23 @@ export async function GET(request: Request) {
       },
     },
   );
-}
+});
 
-export async function POST(request: Request) {
-  const parsed = await parseJsonBody(request, LeaderboardEntryInput);
-  if ("response" in parsed) return parsed.response;
+export const POST = withLogging(
+  "/api/leaderboard",
+  async (request: Request) => {
+    const parsed = await parseJsonBody(request, LeaderboardEntryInput);
+    if ("response" in parsed) return parsed.response;
 
-  const ipHash = hashIp(getClientIp(request.headers));
-  if (!(await consumeRateLimit(`leaderboard:${ipHash}`, ENTRIES_PER_HOUR))) {
-    return apiError("RATE_LIMITED", "Too many entries, try again later", 429);
-  }
+    const ipHash = hashIp(getClientIp(request.headers));
+    if (!(await consumeRateLimit(`leaderboard:${ipHash}`, ENTRIES_PER_HOUR))) {
+      return apiError("RATE_LIMITED", "Too many entries, try again later", 429);
+    }
 
-  try {
-    return NextResponse.json(await submitEntry(parsed.data), { status: 201 });
-  } catch (error) {
-    return handleApiError(error);
-  }
-}
+    try {
+      return NextResponse.json(await submitEntry(parsed.data), { status: 201 });
+    } catch (error) {
+      return handleApiError(error);
+    }
+  },
+);

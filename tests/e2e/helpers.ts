@@ -30,9 +30,9 @@ export async function startGame(page: Page, levelName = "Iniciante") {
   await expect(page.getByText("Pergunta 1 de 10")).toBeVisible();
 }
 
-/** Answers all 10 questions correctly with the mouse and lands on the result page. */
-export async function playToResult(page: Page) {
-  for (let i = 1; i <= 10; i++) {
+/** Answers questions `from`..10 correctly with the mouse and lands on the result page. */
+export async function playToResult(page: Page, from = 1) {
+  for (let i = from; i <= 10; i++) {
     await expect(page.getByText(`Pergunta ${i} de 10`)).toBeVisible();
     const q = questionByStatement(
       (await statementHeading(page).textContent()) ?? "",

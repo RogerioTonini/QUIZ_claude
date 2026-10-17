@@ -1,10 +1,12 @@
 {
   "Metadata": {
     "title": "Claude Code Quiz — Verdadeiro ou Falso",
-    "description": "Teste o que você sabe sobre o Claude Code em um quiz rápido de Verdadeiro ou Falso."
+    "description": "Teste o que você sabe sobre o Claude Code em um quiz rápido de Verdadeiro ou Falso.",
+    "siteName": "Claude Code Quiz"
   },
   "Header": {
-    "title": "Claude Code Quiz"
+    "title": "Claude Code Quiz",
+    "howItWorks": "Como funciona"
   },
   "LanguageSwitcher": {
     "label": "Idioma"
@@ -25,7 +27,8 @@
     "mixedPoints": "100 a 200 pontos por acerto",
     "play": "Jogar",
     "starting": "Criando partida…",
-    "leaderboard": "Ver ranking"
+    "leaderboard": "Ver ranking",
+    "howItWorks": "Como funciona"
   },
   "StartGame": {
     "rateLimited": "Você iniciou muitas partidas na última hora. Tente de novo mais tarde.",
@@ -91,7 +94,8 @@
     "expiredText": "Partidas sem atividade por 2 horas são encerradas.",
     "notFoundTitle": "Partida não encontrada",
     "notFoundText": "O link pode estar errado ou a partida não existe mais.",
-    "newGame": "Nova partida"
+    "newGame": "Nova partida",
+    "title": "Partida"
   },
   "Result": {
     "title": "Resultado",
@@ -148,5 +152,39 @@
     "you": "(você)",
     "empty": "Ainda não há ninguém aqui. Jogue e seja o primeiro!",
     "play": "Jogar"
+  },
+  "HowItWorks": {
+    "title": "Como funciona",
+    "rulesTitle": "Regras",
+    "rules": {
+      "questions": "Cada partida tem {count} afirmações sobre o Claude Code. Para cada uma, responda Verdadeiro ou Falso em até {seconds} segundos.",
+      "levels": "Escolha um nível: Iniciante, Intermediário, Avançado ou Misto (3 perguntas de iniciante, 4 de intermediário e 3 de avançado).",
+      "timeout": "Se o tempo acabar, a resposta conta como errada.",
+      "feedback": "Depois de cada resposta, você vê a resposta certa, uma explicação e um link para a documentação oficial.",
+      "keyboard": "Atalhos de teclado: {trueKey} = Verdadeiro, {falseKey} = Falso, Enter = próxima.",
+      "serverClock": "O relógio fica no servidor: recarregar a página retoma a mesma pergunta sem reiniciar o tempo."
+    },
+    "scoringTitle": "Pontuação",
+    "scoring": {
+      "base": "Pontos-base por acerto: {beginner} no Iniciante, {intermediate} no Intermediário e {advanced} no Avançado. No Misto, cada pergunta vale a base do seu próprio nível.",
+      "time": "Bônus de tempo: até 50% da base, proporcional ao tempo que sobrou.",
+      "streak": "Bônus de sequência: a partir do 3º acerto seguido, +10% da base por acerto, até +50%.",
+      "wrong": "Erro ou tempo esgotado vale 0 ponto e zera a sequência."
+    },
+    "maxScore": "Pontuação máxima teórica: {points, number} pontos (nível Avançado, 10 de 10 acertos, respondendo instantaneamente).",
+    "leaderboardTitle": "Ranking",
+    "leaderboard": "Ao terminar, você tem 30 minutos para registrar a partida no ranking com um apelido. Não é preciso criar conta.",
+    "play": "Jogar agora"
+  },
+  "NotFound": {
+    "title": "Página não encontrada",
+    "text": "O endereço pode estar errado ou a página não existe mais.",
+    "home": "Voltar ao início"
+  },
+  "ErrorPage": {
+    "title": "Algo deu errado",
+    "text": "Ocorreu um erro inesperado. Tente de novo em instantes.",
+    "retry": "Tentar de novo",
+    "home": "Voltar ao início"
   }
 }
