@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { LevelPicker, type LevelOption } from "@/components/game/LevelPicker";
+import { Link } from "@/i18n/navigation";
 import { BASE_POINTS } from "@/server/game/scoring";
 
 const OPTIONS: LevelOption[] = [
@@ -21,6 +22,14 @@ export default function HomePage() {
         <p className="text-lg text-muted">{t("subtitle")}</p>
       </section>
       <LevelPicker options={OPTIONS} />
+      <p className="text-center">
+        <Link
+          href="/leaderboard"
+          className="text-accent underline underline-offset-2"
+        >
+          {t("leaderboard")}
+        </Link>
+      </p>
     </div>
   );
 }

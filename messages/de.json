@@ -24,7 +24,8 @@
     "basePoints": "{points} Punkte pro richtiger Antwort",
     "mixedPoints": "100 bis 200 Punkte pro richtiger Antwort",
     "play": "Spielen",
-    "starting": "Spiel wird gestartet…"
+    "starting": "Spiel wird gestartet…",
+    "leaderboard": "Rangliste ansehen"
   },
   "StartGame": {
     "rateLimited": "Du hast in der letzten Stunde zu viele Spiele gestartet. Bitte versuche es später erneut.",
@@ -114,6 +115,38 @@
     "otherLevel": "Anderes Level wählen",
     "share": "Teilen",
     "copied": "Text in die Zwischenablage kopiert.",
-    "shareText": "Ich habe {score} Punkte im Claude Code Quiz erreicht (Level {level})! {url}"
+    "shareText": "Ich habe {score} Punkte im Claude Code Quiz erreicht (Level {level})! {url}",
+    "seeLeaderboard": "Rangliste ansehen"
+  },
+  "LeaderboardForm": {
+    "title": "In die Rangliste eintragen",
+    "label": "Spitzname",
+    "hint": "3 bis 20 Zeichen: Buchstaben, Ziffern, Leerzeichen, _ - .",
+    "submit": "Eintragen",
+    "submitting": "Wird eingetragen…",
+    "success": "Du bist auf Platz {rank} der Gesamtrangliste im Level {level}.",
+    "closed": "Die Frist zum Eintragen dieses Spiels (30 Minuten) ist abgelaufen.",
+    "tooShort": "Der Spitzname braucht mindestens 3 Zeichen.",
+    "tooLong": "Der Spitzname darf höchstens 20 Zeichen haben.",
+    "invalidChars": "Nur Buchstaben, Ziffern, Leerzeichen, _ - und Punkt.",
+    "notAllowed": "Dieser Spitzname ist nicht erlaubt. Bitte wähle einen anderen.",
+    "rateLimited": "Zu viele Einträge in der letzten Stunde. Versuche es später noch einmal.",
+    "error": "Eintragen fehlgeschlagen. Prüfe deine Verbindung und versuche es noch einmal."
+  },
+  "Leaderboard": {
+    "title": "Rangliste",
+    "levels": "Level",
+    "period": "Zeitraum",
+    "week": "Diese Woche",
+    "all": "Gesamt",
+    "rank": "Platz",
+    "nickname": "Spitzname",
+    "score": "Punkte",
+    "correct": "Richtig",
+    "time": "Zeit",
+    "date": "Datum",
+    "you": "(du)",
+    "empty": "Noch niemand hier. Spiel und sei der Erste!",
+    "play": "Spielen"
   }
 }

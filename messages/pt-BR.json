@@ -24,7 +24,8 @@
     "basePoints": "{points} pontos por acerto",
     "mixedPoints": "100 a 200 pontos por acerto",
     "play": "Jogar",
-    "starting": "Criando partida…"
+    "starting": "Criando partida…",
+    "leaderboard": "Ver ranking"
   },
   "StartGame": {
     "rateLimited": "Você iniciou muitas partidas na última hora. Tente de novo mais tarde.",
@@ -114,6 +115,38 @@
     "otherLevel": "Escolher outro nível",
     "share": "Compartilhar",
     "copied": "Texto copiado para a área de transferência.",
-    "shareText": "Fiz {score} pontos no Claude Code Quiz (nível {level})! {url}"
+    "shareText": "Fiz {score} pontos no Claude Code Quiz (nível {level})! {url}",
+    "seeLeaderboard": "Ver ranking"
+  },
+  "LeaderboardForm": {
+    "title": "Entre no ranking",
+    "label": "Apelido",
+    "hint": "3 a 20 caracteres: letras, números, espaço, _ - .",
+    "submit": "Registrar",
+    "submitting": "Registrando…",
+    "success": "Você está em #{rank} no ranking de todos os tempos do nível {level}.",
+    "closed": "O prazo para registrar esta partida no ranking (30 minutos) terminou.",
+    "tooShort": "O apelido precisa ter pelo menos 3 caracteres.",
+    "tooLong": "O apelido pode ter no máximo 20 caracteres.",
+    "invalidChars": "Use apenas letras, números, espaço, _ - e ponto.",
+    "notAllowed": "Este apelido não é permitido. Escolha outro.",
+    "rateLimited": "Muitos registros na última hora. Tente de novo mais tarde.",
+    "error": "Não foi possível registrar. Verifique sua conexão e tente de novo."
+  },
+  "Leaderboard": {
+    "title": "Ranking",
+    "levels": "Nível",
+    "period": "Período",
+    "week": "Semana",
+    "all": "Todos os tempos",
+    "rank": "Posição",
+    "nickname": "Apelido",
+    "score": "Pontos",
+    "correct": "Acertos",
+    "time": "Tempo",
+    "date": "Data",
+    "you": "(você)",
+    "empty": "Ainda não há ninguém aqui. Jogue e seja o primeiro!",
+    "play": "Jogar"
   }
 }

@@ -1,31 +1,5 @@
-import type { Page } from "@playwright/test";
-import bank from "../../src/content/questions.json";
 import { expect, test } from "./fixtures";
-
-type Locale = "pt-BR" | "en" | "de";
-const questions = bank.questions as {
-  id: string;
-  answer: boolean;
-  statement: Record<Locale, string>;
-  explanation: Record<Locale, string>;
-}[];
-
-function questionByStatement(statement: string, locale: Locale = "pt-BR") {
-  const q = questions.find((item) => item.statement[locale] === statement);
-  if (!q) throw new Error(`Unknown statement: ${statement}`);
-  return q;
-}
-
-const statementHeading = (page: Page) =>
-  page.getByRole("heading", { level: 1 });
-
-async function startGame(page: Page, levelName = "Iniciante") {
-  await page.goto("/pt-BR");
-  await page.getByRole("radio", { name: new RegExp(levelName) }).check();
-  await page.getByRole("button", { name: "Jogar" }).click();
-  await expect(page).toHaveURL(/\/pt-BR\/play\/[\w-]+$/);
-  await expect(page.getByText("Pergunta 1 de 10")).toBeVisible();
-}
+import { questionByStatement, startGame, statementHeading } from "./helpers";
 
 test.describe("game", () => {
   test("plays a full game with mouse and keyboard and shows the result", async ({

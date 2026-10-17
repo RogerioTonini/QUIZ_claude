@@ -3,10 +3,12 @@ import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { ResultActions } from "@/components/game/ResultActions";
+import { LeaderboardForm } from "@/components/leaderboard/LeaderboardForm";
 import { redirect } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { ApiError } from "@/lib/api";
 import { type GameSummary, getSummary } from "@/server/games";
+import { getEntryForGame, isSubmissionOpen } from "@/server/leaderboard";
 
 export default function ResultPage({
   params,
@@ -102,6 +104,13 @@ async function ResultContent({
           </div>
         ))}
       </dl>
+
+      <LeaderboardForm
+        gameId={summary.gameId}
+        level={summary.level}
+        open={isSubmissionOpen(new Date(summary.finishedAt))}
+        existing={await getEntryForGame(summary.gameId)}
+      />
 
       <ResultActions level={summary.level} score={summary.score} />
 
