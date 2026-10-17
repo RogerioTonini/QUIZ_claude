@@ -1,0 +1,515 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "id": "B01",
+      "level": "beginner",
+      "category": "fundamentals",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/overview",
+      "statement": {
+        "pt-BR": "O Claude Code é uma ferramenta de programação agêntica da Anthropic que pode ler e editar arquivos e executar comandos no seu projeto.",
+        "en": "Claude Code is an agentic coding tool from Anthropic that can read and edit files and run commands in your project.",
+        "de": "Claude Code ist ein agentisches Coding-Tool von Anthropic, das Dateien in deinem Projekt lesen und bearbeiten sowie Befehle ausführen kann."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. Ele atua como um agente: entende a base de código, edita arquivos e roda comandos, sob seu controle.",
+        "en": "True. It acts as an agent: it understands your codebase, edits files and runs commands, under your control.",
+        "de": "Wahr. Es arbeitet als Agent: Es versteht deine Codebasis, bearbeitet Dateien und führt Befehle aus – unter deiner Kontrolle."
+      }
+    },
+    {
+      "id": "B02",
+      "level": "beginner",
+      "category": "fundamentals",
+      "answer": false,
+      "docUrl": "https://code.claude.com/docs/en/platforms",
+      "statement": {
+        "pt-BR": "O Claude Code só pode ser usado dentro do navegador.",
+        "en": "Claude Code can only be used inside a web browser.",
+        "de": "Claude Code kann nur im Webbrowser verwendet werden."
+      },
+      "explanation": {
+        "pt-BR": "Falso. Ele roda no terminal (CLI), em extensões de IDE como VS Code e JetBrains, no app desktop e na web.",
+        "en": "False. It runs in the terminal (CLI), in IDE extensions such as VS Code and JetBrains, in the desktop app and on the web.",
+        "de": "Falsch. Es läuft im Terminal (CLI), in IDE-Erweiterungen wie VS Code und JetBrains, in der Desktop-App und im Web."
+      }
+    },
+    {
+      "id": "B03",
+      "level": "beginner",
+      "category": "business",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/authentication",
+      "statement": {
+        "pt-BR": "Para usar o Claude Code é preciso ter uma assinatura do Claude ou uma conta com acesso à API da Anthropic.",
+        "en": "To use Claude Code you need a Claude subscription or an account with access to the Anthropic API.",
+        "de": "Um Claude Code zu nutzen, brauchst du ein Claude-Abonnement oder ein Konto mit Zugang zur Anthropic API."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. O acesso é feito via planos do Claude (como Pro e Max, ou planos de equipe) ou via conta da Claude Console/API.",
+        "en": "True. Access comes through Claude plans (such as Pro and Max, or team plans) or through a Claude Console/API account.",
+        "de": "Wahr. Der Zugang erfolgt über Claude-Pläne (etwa Pro und Max oder Team-Pläne) oder über ein Claude-Console-/API-Konto."
+      }
+    },
+    {
+      "id": "B04",
+      "level": "beginner",
+      "category": "fundamentals",
+      "answer": false,
+      "docUrl": "https://code.claude.com/docs/en/overview",
+      "statement": {
+        "pt-BR": "O Claude Code funciona apenas com projetos escritos em Python.",
+        "en": "Claude Code only works with projects written in Python.",
+        "de": "Claude Code funktioniert nur mit Projekten, die in Python geschrieben sind."
+      },
+      "explanation": {
+        "pt-BR": "Falso. Ele trabalha com praticamente qualquer linguagem e tipo de projeto.",
+        "en": "False. It works with virtually any programming language and type of project.",
+        "de": "Falsch. Es funktioniert mit praktisch jeder Programmiersprache und jeder Art von Projekt."
+      }
+    },
+    {
+      "id": "B05",
+      "level": "beginner",
+      "category": "security",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/permission-modes",
+      "statement": {
+        "pt-BR": "O Claude Code tem modos de permissão que definem quais ações ele pode executar sem pedir a sua aprovação.",
+        "en": "Claude Code has permission modes that define which actions it can take without asking for your approval.",
+        "de": "Claude Code hat Berechtigungsmodi, die festlegen, welche Aktionen es ausführen darf, ohne dich um Zustimmung zu bitten."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. Os modos vão de pedir aprovação para quase toda ação até aprovar edições automaticamente, e você pode trocar de modo a qualquer momento.",
+        "en": "True. The modes range from asking for approval on almost every action to approving edits automatically, and you can switch modes at any time.",
+        "de": "Wahr. Die Modi reichen davon, fast jede Aktion bestätigen zu lassen, bis dazu, Bearbeitungen automatisch zu genehmigen – und du kannst jederzeit wechseln."
+      }
+    },
+    {
+      "id": "B06",
+      "level": "beginner",
+      "category": "workflow",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/common-workflows",
+      "statement": {
+        "pt-BR": "O Claude Code consegue criar commits e abrir pull requests usando Git.",
+        "en": "Claude Code can create commits and open pull requests using Git.",
+        "de": "Claude Code kann mit Git Commits erstellen und Pull Requests öffnen."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. Ele opera o Git e, com o GitHub CLI, pode abrir PRs com descrição gerada.",
+        "en": "True. It operates Git and, with the GitHub CLI, can open PRs with a generated description.",
+        "de": "Wahr. Es bedient Git und kann mit der GitHub CLI PRs mit einer generierten Beschreibung öffnen."
+      }
+    },
+    {
+      "id": "B07",
+      "level": "beginner",
+      "category": "business",
+      "answer": false,
+      "docUrl": "https://code.claude.com/docs/en/best-practices",
+      "statement": {
+        "pt-BR": "Usar o Claude Code elimina a necessidade de revisão humana do código.",
+        "en": "Using Claude Code removes the need for human code review.",
+        "de": "Mit Claude Code ist kein menschliches Code-Review mehr nötig."
+      },
+      "explanation": {
+        "pt-BR": "Falso. Ele acelera o trabalho, mas a responsabilidade pelo código continua sendo do time; revisão humana segue essencial.",
+        "en": "False. It speeds up the work, but the team remains responsible for the code; human review is still essential.",
+        "de": "Falsch. Es beschleunigt die Arbeit, aber die Verantwortung für den Code bleibt beim Team; menschliches Review bleibt unverzichtbar."
+      }
+    },
+    {
+      "id": "B08",
+      "level": "beginner",
+      "category": "automation",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/github-actions",
+      "statement": {
+        "pt-BR": "O Claude Code pode ser integrado ao GitHub Actions para automatizar tarefas em issues e pull requests.",
+        "en": "Claude Code can be integrated with GitHub Actions to automate tasks on issues and pull requests.",
+        "de": "Claude Code lässt sich in GitHub Actions integrieren, um Aufgaben in Issues und Pull Requests zu automatisieren."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. Há integração oficial com o GitHub Actions, acionável por menções em issues e PRs.",
+        "en": "True. There is an official GitHub Actions integration that can be triggered by mentions in issues and PRs.",
+        "de": "Wahr. Es gibt eine offizielle GitHub-Actions-Integration, die sich per Erwähnung in Issues und PRs auslösen lässt."
+      }
+    },
+    {
+      "id": "B09",
+      "level": "beginner",
+      "category": "config",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/memory",
+      "statement": {
+        "pt-BR": "O arquivo CLAUDE.md serve para dar ao Claude Code contexto e instruções persistentes sobre o projeto.",
+        "en": "The CLAUDE.md file gives Claude Code persistent context and instructions about the project.",
+        "de": "Die Datei CLAUDE.md gibt Claude Code dauerhaften Kontext und Anweisungen zum Projekt."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. Ele é carregado automaticamente e guarda convenções, comandos e regras do projeto.",
+        "en": "True. It is loaded automatically and holds the project's conventions, commands and rules.",
+        "de": "Wahr. Sie wird automatisch geladen und enthält Konventionen, Befehle und Regeln des Projekts."
+      }
+    },
+    {
+      "id": "B10",
+      "level": "beginner",
+      "category": "business",
+      "answer": false,
+      "docUrl": "https://code.claude.com/docs/en/overview",
+      "statement": {
+        "pt-BR": "O Claude Code é um produto da OpenAI.",
+        "en": "Claude Code is a product made by OpenAI.",
+        "de": "Claude Code ist ein Produkt von OpenAI."
+      },
+      "explanation": {
+        "pt-BR": "Falso. O Claude Code é desenvolvido pela Anthropic.",
+        "en": "False. Claude Code is developed by Anthropic.",
+        "de": "Falsch. Claude Code wird von Anthropic entwickelt."
+      }
+    },
+    {
+      "id": "I01",
+      "level": "intermediate",
+      "category": "commands",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/commands",
+      "statement": {
+        "pt-BR": "O comando /init analisa o projeto e gera um arquivo CLAUDE.md inicial.",
+        "en": "The /init command analyzes the project and generates a starter CLAUDE.md file.",
+        "de": "Der Befehl /init analysiert das Projekt und erzeugt eine erste CLAUDE.md-Datei."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. É a forma recomendada de começar a documentar o projeto para o Claude.",
+        "en": "True. It is the recommended way to start documenting the project for Claude.",
+        "de": "Wahr. Das ist der empfohlene Weg, das Projekt für Claude zu dokumentieren."
+      }
+    },
+    {
+      "id": "I02",
+      "level": "intermediate",
+      "category": "commands",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/commands",
+      "statement": {
+        "pt-BR": "O comando /clear limpa o histórico da conversa atual, começando um contexto novo.",
+        "en": "The /clear command clears the current conversation history and starts a fresh context.",
+        "de": "Der Befehl /clear löscht den bisherigen Gesprächsverlauf und beginnt mit frischem Kontext."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. É útil ao trocar de tarefa para não carregar contexto irrelevante; a memória do projeto (CLAUDE.md) continua valendo.",
+        "en": "True. It is useful when switching tasks so you don't carry irrelevant context; project memory (CLAUDE.md) still applies.",
+        "de": "Wahr. Das hilft beim Aufgabenwechsel, damit kein irrelevanter Kontext mitläuft; das Projektgedächtnis (CLAUDE.md) bleibt erhalten."
+      }
+    },
+    {
+      "id": "I03",
+      "level": "intermediate",
+      "category": "commands",
+      "answer": false,
+      "docUrl": "https://code.claude.com/docs/en/commands",
+      "statement": {
+        "pt-BR": "O comando /compact apaga arquivos temporários do projeto para liberar espaço em disco.",
+        "en": "The /compact command deletes temporary project files to free up disk space.",
+        "de": "Der Befehl /compact löscht temporäre Projektdateien, um Speicherplatz freizugeben."
+      },
+      "explanation": {
+        "pt-BR": "Falso. O /compact resume a conversa para liberar espaço na janela de contexto; não mexe nos seus arquivos.",
+        "en": "False. /compact summarizes the conversation to free up space in the context window; it doesn't touch your files.",
+        "de": "Falsch. /compact fasst das Gespräch zusammen, um Platz im Kontextfenster zu schaffen; deine Dateien bleiben unberührt."
+      }
+    },
+    {
+      "id": "I04",
+      "level": "intermediate",
+      "category": "workflow",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/permission-modes",
+      "statement": {
+        "pt-BR": "No Plan mode, o Claude analisa o código e propõe um plano sem editar arquivos.",
+        "en": "In Plan mode, Claude analyzes the code and proposes a plan without editing files.",
+        "de": "Im Plan mode analysiert Claude den Code und schlägt einen Plan vor, ohne Dateien zu bearbeiten."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. É ideal para explorar e alinhar a abordagem antes de qualquer mudança; as edições só começam depois que você aprova o plano.",
+        "en": "True. It is ideal for exploring and agreeing on an approach before any change; edits only start after you approve the plan.",
+        "de": "Wahr. Ideal, um vor jeder Änderung zu erkunden und den Ansatz abzustimmen; Bearbeitungen beginnen erst, wenn du den Plan freigibst."
+      }
+    },
+    {
+      "id": "I05",
+      "level": "intermediate",
+      "category": "automation",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/headless",
+      "statement": {
+        "pt-BR": "A flag -p (print) permite executar o Claude Code de forma não interativa, útil em scripts.",
+        "en": "The -p (print) flag lets you run Claude Code non-interactively, which is useful in scripts.",
+        "de": "Mit dem Flag -p (print) lässt sich Claude Code nicht interaktiv ausführen, was in Skripten nützlich ist."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. Ele processa o prompt, imprime a resposta e encerra — bom para pipelines.",
+        "en": "True. It processes the prompt, prints the response and exits — good for pipelines.",
+        "de": "Wahr. Es verarbeitet den Prompt, gibt die Antwort aus und beendet sich – gut für Pipelines."
+      }
+    },
+    {
+      "id": "I06",
+      "level": "intermediate",
+      "category": "extensibility",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/skills",
+      "statement": {
+        "pt-BR": "Slash commands personalizados podem ser criados como arquivos Markdown dentro da pasta .claude do projeto.",
+        "en": "Custom slash commands can be created as Markdown files inside the project's .claude folder.",
+        "de": "Eigene slash commands lassen sich als Markdown-Dateien im .claude-Ordner des Projekts anlegen."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. Um arquivo em .claude/commands/ ou uma skill em .claude/skills/ vira um comando /nome, que pode ser versionado e compartilhado com o time.",
+        "en": "True. A file in .claude/commands/ or a skill in .claude/skills/ becomes a /name command that can be versioned and shared with the team.",
+        "de": "Wahr. Eine Datei in .claude/commands/ oder ein Skill in .claude/skills/ wird zu einem /name-Befehl, den das Team versionieren und teilen kann."
+      }
+    },
+    {
+      "id": "I07",
+      "level": "intermediate",
+      "category": "config",
+      "answer": false,
+      "docUrl": "https://code.claude.com/docs/en/memory",
+      "statement": {
+        "pt-BR": "O CLAUDE.md só pode existir na raiz do projeto; não há como ter instruções globais do usuário.",
+        "en": "CLAUDE.md can only exist at the project root; there is no way to have global user instructions.",
+        "de": "Eine CLAUDE.md kann nur im Projektstamm liegen; globale Anweisungen pro Benutzer sind nicht möglich."
+      },
+      "explanation": {
+        "pt-BR": "Falso. Também existe um CLAUDE.md no diretório do usuário (~/.claude/) com instruções para todos os projetos.",
+        "en": "False. There is also a CLAUDE.md in your user directory (~/.claude/) with instructions for all projects.",
+        "de": "Falsch. Es gibt auch eine CLAUDE.md im Benutzerverzeichnis (~/.claude/) mit Anweisungen für alle Projekte."
+      }
+    },
+    {
+      "id": "I08",
+      "level": "intermediate",
+      "category": "commands",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/sessions",
+      "statement": {
+        "pt-BR": "O comando claude --continue retoma a conversa mais recente do diretório atual.",
+        "en": "The claude --continue command resumes the most recent conversation in the current directory.",
+        "de": "Der Befehl claude --continue setzt das letzte Gespräch im aktuellen Verzeichnis fort."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. E o claude --resume permite escolher uma conversa anterior.",
+        "en": "True. And claude --resume lets you pick an earlier conversation.",
+        "de": "Wahr. Und mit claude --resume kannst du ein früheres Gespräch auswählen."
+      }
+    },
+    {
+      "id": "I09",
+      "level": "intermediate",
+      "category": "workflow",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/common-workflows",
+      "statement": {
+        "pt-BR": "Mencionar um arquivo com @ no prompt inclui esse arquivo no contexto da conversa.",
+        "en": "Mentioning a file with @ in the prompt adds that file to the conversation context.",
+        "de": "Wenn du eine Datei im Prompt mit @ erwähnst, wird sie in den Gesprächskontext aufgenommen."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. É um jeito rápido de apontar exatamente o que o Claude deve ler.",
+        "en": "True. It is a quick way to point Claude at exactly what it should read.",
+        "de": "Wahr. So zeigst du Claude schnell, was es genau lesen soll."
+      }
+    },
+    {
+      "id": "I10",
+      "level": "intermediate",
+      "category": "workflow",
+      "answer": false,
+      "docUrl": "https://code.claude.com/docs/en/common-workflows",
+      "statement": {
+        "pt-BR": "O Claude Code não consegue analisar imagens, como screenshots coladas na conversa.",
+        "en": "Claude Code cannot analyze images, such as screenshots pasted into the conversation.",
+        "de": "Claude Code kann keine Bilder analysieren, etwa ins Gespräch eingefügte Screenshots."
+      },
+      "explanation": {
+        "pt-BR": "Falso. Ele aceita imagens, por exemplo um screenshot de erro ou um mockup de interface.",
+        "en": "False. It accepts images, for example a screenshot of an error or a UI mockup.",
+        "de": "Falsch. Es versteht Bilder, zum Beispiel einen Screenshot einer Fehlermeldung oder ein UI-Mockup."
+      }
+    },
+    {
+      "id": "A01",
+      "level": "advanced",
+      "category": "extensibility",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/hooks-guide",
+      "statement": {
+        "pt-BR": "Hooks são comandos configurados nas settings que executam automaticamente em eventos como PreToolUse e PostToolUse.",
+        "en": "Hooks are commands configured in settings that run automatically on events such as PreToolUse and PostToolUse.",
+        "de": "Hooks sind in den Settings konfigurierte Befehle, die bei Ereignissen wie PreToolUse und PostToolUse automatisch ausgeführt werden."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. Hooks garantem comportamentos determinísticos, como rodar um formatter após cada edição.",
+        "en": "True. Hooks guarantee deterministic behavior, such as running a formatter after every edit.",
+        "de": "Wahr. Hooks sorgen für deterministisches Verhalten, etwa einen Formatter nach jeder Bearbeitung auszuführen."
+      }
+    },
+    {
+      "id": "A02",
+      "level": "advanced",
+      "category": "extensibility",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/hooks",
+      "statement": {
+        "pt-BR": "Um hook PreToolUse pode bloquear a execução de uma ferramenta antes que ela aconteça.",
+        "en": "A PreToolUse hook can block a tool call before it runs.",
+        "de": "Ein PreToolUse-Hook kann einen Tool-Aufruf blockieren, bevor er ausgeführt wird."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. O hook pode negar a chamada (por exemplo, via código de saída 2 ou decisão em JSON) e informar o motivo.",
+        "en": "True. The hook can deny the call (for example with exit code 2 or a JSON decision) and give the reason.",
+        "de": "Wahr. Der Hook kann den Aufruf ablehnen (zum Beispiel mit Exit-Code 2 oder einer JSON-Entscheidung) und den Grund nennen."
+      }
+    },
+    {
+      "id": "A03",
+      "level": "advanced",
+      "category": "extensibility",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/mcp",
+      "statement": {
+        "pt-BR": "O MCP (Model Context Protocol) permite conectar o Claude Code a ferramentas e fontes de dados externas.",
+        "en": "MCP (Model Context Protocol) lets you connect Claude Code to external tools and data sources.",
+        "de": "MCP (Model Context Protocol) verbindet Claude Code mit externen Tools und Datenquellen."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. Servidores MCP expõem ferramentas como bancos de dados, issue trackers e APIs.",
+        "en": "True. MCP servers expose tools such as databases, issue trackers and APIs.",
+        "de": "Wahr. MCP-Server stellen Tools wie Datenbanken, Issue-Tracker und APIs bereit."
+      }
+    },
+    {
+      "id": "A04",
+      "level": "advanced",
+      "category": "extensibility",
+      "answer": false,
+      "docUrl": "https://code.claude.com/docs/en/mcp",
+      "statement": {
+        "pt-BR": "Servidores MCP só podem ser adicionados modificando o código-fonte do Claude Code.",
+        "en": "MCP servers can only be added by modifying Claude Code's source code.",
+        "de": "MCP-Server lassen sich nur hinzufügen, indem man den Quellcode von Claude Code ändert."
+      },
+      "explanation": {
+        "pt-BR": "Falso. Basta configurá-los, por exemplo com o comando claude mcp add ou um arquivo .mcp.json no projeto.",
+        "en": "False. You just configure them, for example with the claude mcp add command or a .mcp.json file in the project.",
+        "de": "Falsch. Man konfiguriert sie einfach, zum Beispiel mit dem Befehl claude mcp add oder einer .mcp.json-Datei im Projekt."
+      }
+    },
+    {
+      "id": "A05",
+      "level": "advanced",
+      "category": "extensibility",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/sub-agents",
+      "statement": {
+        "pt-BR": "Subagents trabalham com uma janela de contexto própria, separada da conversa principal.",
+        "en": "Subagents work with their own context window, separate from the main conversation.",
+        "de": "Subagents arbeiten mit einem eigenen Kontextfenster, getrennt vom Hauptgespräch."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. Isso permite delegar tarefas sem poluir o contexto principal.",
+        "en": "True. This lets you delegate tasks without cluttering the main context.",
+        "de": "Wahr. So lassen sich Aufgaben delegieren, ohne den Hauptkontext zu überladen."
+      }
+    },
+    {
+      "id": "A06",
+      "level": "advanced",
+      "category": "config",
+      "answer": false,
+      "docUrl": "https://code.claude.com/docs/en/settings",
+      "statement": {
+        "pt-BR": "O arquivo .claude/settings.local.json foi feito para ser versionado no Git e compartilhado com todo o time.",
+        "en": "The .claude/settings.local.json file is meant to be committed to Git and shared with the whole team.",
+        "de": "Die Datei .claude/settings.local.json ist dafür gedacht, in Git eingecheckt und mit dem ganzen Team geteilt zu werden."
+      },
+      "explanation": {
+        "pt-BR": "Falso. Ele é para ajustes pessoais e não deve ser versionado; o compartilhado é o .claude/settings.json.",
+        "en": "False. It is for personal settings and shouldn't be committed; the shared one is .claude/settings.json.",
+        "de": "Falsch. Sie ist für persönliche Einstellungen und sollte nicht eingecheckt werden; geteilt wird .claude/settings.json."
+      }
+    },
+    {
+      "id": "A07",
+      "level": "advanced",
+      "category": "automation",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/agent-sdk/overview",
+      "statement": {
+        "pt-BR": "O Claude Agent SDK permite construir agentes próprios usando a mesma base que alimenta o Claude Code.",
+        "en": "The Claude Agent SDK lets you build your own agents on the same foundation that powers Claude Code.",
+        "de": "Mit dem Claude Agent SDK kannst du eigene Agenten auf derselben Grundlage bauen, auf der Claude Code läuft."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. O SDK expõe o loop agêntico, as ferramentas e o gerenciamento de contexto para os seus próprios agentes.",
+        "en": "True. The SDK exposes the agent loop, tools and context management for your own agents.",
+        "de": "Wahr. Das SDK stellt die Agentenschleife, Tools und Kontextverwaltung für deine eigenen Agenten bereit."
+      }
+    },
+    {
+      "id": "A08",
+      "level": "advanced",
+      "category": "security",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/permissions",
+      "statement": {
+        "pt-BR": "Regras de permissão podem liberar ou negar comandos específicos, como Bash(npm run test *).",
+        "en": "Permission rules can allow or deny specific commands, such as Bash(npm run test *).",
+        "de": "Berechtigungsregeln können bestimmte Befehle erlauben oder verbieten, etwa Bash(npm run test *)."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. Regras allow, ask e deny com padrões dão controle fino sobre o que roda sem pedir aprovação.",
+        "en": "True. Allow, ask and deny rules with patterns give fine-grained control over what runs without asking for approval.",
+        "de": "Wahr. Allow-, Ask- und Deny-Regeln mit Mustern geben feine Kontrolle darüber, was ohne Rückfrage läuft."
+      }
+    },
+    {
+      "id": "A09",
+      "level": "advanced",
+      "category": "security",
+      "answer": false,
+      "docUrl": "https://code.claude.com/docs/en/permission-modes",
+      "statement": {
+        "pt-BR": "A flag --dangerously-skip-permissions é recomendada para o uso diário em máquinas com acesso à internet e dados sensíveis.",
+        "en": "The --dangerously-skip-permissions flag is recommended for everyday use on machines with internet access and sensitive data.",
+        "de": "Das Flag --dangerously-skip-permissions wird für den täglichen Einsatz auf Rechnern mit Internetzugang und sensiblen Daten empfohlen."
+      },
+      "explanation": {
+        "pt-BR": "Falso. Ela pula as confirmações de permissão e só é indicada em ambientes isolados, como containers ou VMs.",
+        "en": "False. It skips permission prompts and is only meant for isolated environments such as containers or VMs.",
+        "de": "Falsch. Es überspringt die Berechtigungsabfragen und ist nur für isolierte Umgebungen wie Container oder VMs gedacht."
+      }
+    },
+    {
+      "id": "A10",
+      "level": "advanced",
+      "category": "workflow",
+      "answer": true,
+      "docUrl": "https://code.claude.com/docs/en/worktrees",
+      "statement": {
+        "pt-BR": "Git worktrees permitem rodar várias sessões do Claude Code em paralelo, em branches diferentes, sem que uma sobrescreva os arquivos da outra.",
+        "en": "Git worktrees let you run several Claude Code sessions in parallel, on different branches, without one overwriting the other's files.",
+        "de": "Mit Git Worktrees kannst du mehrere Claude-Code-Sitzungen parallel auf verschiedenen Branches ausführen, ohne dass eine die Dateien der anderen überschreibt."
+      },
+      "explanation": {
+        "pt-BR": "Verdadeiro. Cada worktree é um diretório de trabalho isolado do mesmo repositório.",
+        "en": "True. Each worktree is an isolated working directory of the same repository.",
+        "de": "Wahr. Jeder Worktree ist ein isoliertes Arbeitsverzeichnis desselben Repositorys."
+      }
+    }
+  ]
+}
