@@ -12,6 +12,12 @@ for (const file of [".env.local", ".env"]) {
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: { path: "prisma/migrations" },
-  // Migrations need the direct (non-pooled) connection. Optional so `prisma generate` works without a database.
-  datasource: { url: process.env.DIRECT_URL ?? process.env.DATABASE_URL },
+  // Migrations need the direct (non-pooled) connection; the Vercel Neon integration names it
+  // DATABASE_URL_UNPOOLED. Optional so `prisma generate` works without a database.
+  datasource: {
+    url:
+      process.env.DIRECT_URL ??
+      process.env.DATABASE_URL_UNPOOLED ??
+      process.env.DATABASE_URL,
+  },
 });
