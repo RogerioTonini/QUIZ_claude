@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-**`.llm/prd.md` is the source of truth** (pt-BR). Read it before doing anything. It defines a public True/False web quiz about Claude Code (3 levels + Mixed, 10 questions/game, 30s timer, server-side scoring, public leaderboard, pt-BR/en/de). The step-by-step plan for phases F1–F7 follows PRD §13. F1 (foundation: scaffold, i18n, layout, tooling, CI) is done; game, content and database are not built yet.
+**`.llm/prd.md` is the source of truth** (pt-BR). Read it before doing anything. It defines a public True/False web quiz about Claude Code (3 levels + Mixed, 10 questions/game, 30s timer, server-side scoring, public leaderboard, pt-BR/en/de). The step-by-step plan for phases F1–F7 follows PRD §13. F1 (foundation: scaffold, i18n, layout, tooling, CI) and F2 (question bank + content access) are done; game engine, UI and database are not built yet.
 
 - Build in the phases of PRD §13 (F1 Foundation → F7 Deploy). Each phase must end with `pnpm lint`, `pnpm typecheck` and `pnpm test` all passing.
 - If something isn't covered by the PRD, choose the simplest option, record it in `docs/decisions.md` (next `Dxx` row, pt-BR) and keep going. Read the existing decisions first; they refine the PRD.
@@ -30,6 +30,8 @@ pnpm test:e2e        # Playwright (Chromium); builds and serves the app on port 
 ```
 
 Single test: `pnpm vitest run tests/unit/messages.test.ts -t "<name>"`, or `pnpm playwright test tests/e2e/i18n.spec.ts -g "<name>"`.
+
+Manual, not in CI: `node scripts/check-doc-urls.mts` checks that every `docUrl` in the question bank answers 2xx.
 
 Planned for F3 (D11): `pnpm db:migrate` (Prisma migrations, uses `DIRECT_URL`) and `pnpm db:studio`.
 
@@ -74,7 +76,7 @@ Browser (client components) → Route Handlers /api/* → src/server/** (pure ga
 
 ## Question content rules
 
-`src/content/questions.json` is validated by a Zod schema plus a required test:
+`src/content/questions.json` is validated by `QuestionBankSchema` (`src/lib/zod-schemas.ts`, which also exports `LEVELS`/`CATEGORIES`) plus a required test (`tests/unit/content.test.ts`). Server code reads it only through `src/server/content.ts` (`getQuestion`, `getQuestionsByLevel`, `toPublicQuestion(q, locale)`, which strips `answer`/`explanation`/`docUrl`). Vitest aliases `server-only` to its empty entry so server modules can be unit-tested.
 
 - `id` is unique, there are exactly 10 questions per level, and all 3 locales are filled in both `statement` and `explanation`.
 - `explanation` starts with a prefix that matches `answer`: `Verdadeiro.`/`Falso.`, `True.`/`False.`, `Wahr.`/`Falsch.`. This guards against translations flipping T/F.
