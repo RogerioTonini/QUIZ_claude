@@ -24,7 +24,8 @@
     "basePoints": "{points} points per correct answer",
     "mixedPoints": "100 to 200 points per correct answer",
     "play": "Play",
-    "starting": "Starting game…"
+    "starting": "Starting game…",
+    "leaderboard": "View leaderboard"
   },
   "StartGame": {
     "rateLimited": "You started too many games in the last hour. Please try again later.",
@@ -114,6 +115,38 @@
     "otherLevel": "Choose another level",
     "share": "Share",
     "copied": "Text copied to the clipboard.",
-    "shareText": "I scored {score} points on the Claude Code Quiz ({level} level)! {url}"
+    "shareText": "I scored {score} points on the Claude Code Quiz ({level} level)! {url}",
+    "seeLeaderboard": "View leaderboard"
+  },
+  "LeaderboardForm": {
+    "title": "Join the leaderboard",
+    "label": "Nickname",
+    "hint": "3 to 20 characters: letters, digits, space, _ - .",
+    "submit": "Submit",
+    "submitting": "Submitting…",
+    "success": "You are #{rank} on the all-time {level} leaderboard.",
+    "closed": "The window to submit this game to the leaderboard (30 minutes) has closed.",
+    "tooShort": "Your nickname needs at least 3 characters.",
+    "tooLong": "Your nickname can have at most 20 characters.",
+    "invalidChars": "Use only letters, digits, space, _ - and period.",
+    "notAllowed": "This nickname is not allowed. Please pick another.",
+    "rateLimited": "Too many submissions in the last hour. Try again later.",
+    "error": "Could not submit. Check your connection and try again."
+  },
+  "Leaderboard": {
+    "title": "Leaderboard",
+    "levels": "Level",
+    "period": "Period",
+    "week": "This week",
+    "all": "All time",
+    "rank": "Rank",
+    "nickname": "Nickname",
+    "score": "Points",
+    "correct": "Correct",
+    "time": "Time",
+    "date": "Date",
+    "you": "(you)",
+    "empty": "Nobody here yet. Play and be the first!",
+    "play": "Play"
   }
 }

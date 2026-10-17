@@ -58,6 +58,12 @@ export function ResultActions({
         >
           {t("Result.otherLevel")}
         </Link>
+        <Link
+          href={{ pathname: "/leaderboard", query: { level } }}
+          className={`${button} border border-border hover:bg-surface`}
+        >
+          {t("Result.seeLeaderboard")}
+        </Link>
         <button
           type="button"
           onClick={() => void share()}
