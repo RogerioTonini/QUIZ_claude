@@ -19,6 +19,101 @@
   },
   "Home": {
     "title": "How well do you know Claude Code?",
-    "subtitle": "10 statements, 30 seconds each. True or false?"
+    "subtitle": "10 statements, 30 seconds each. True or false?",
+    "chooseLevel": "Choose your level",
+    "basePoints": "{points} points per correct answer",
+    "mixedPoints": "100 to 200 points per correct answer",
+    "play": "Play",
+    "starting": "Starting game…"
+  },
+  "StartGame": {
+    "rateLimited": "You started too many games in the last hour. Please try again later.",
+    "error": "Couldn't start the game. Check your connection and try again."
+  },
+  "Levels": {
+    "beginner": {
+      "name": "Beginner",
+      "description": "The basics: what Claude Code is, where it runs and how to get started."
+    },
+    "intermediate": {
+      "name": "Intermediate",
+      "description": "Workflow, commands, CLAUDE.md and settings."
+    },
+    "advanced": {
+      "name": "Advanced",
+      "description": "Hooks, MCP, subagents, permissions and automation."
+    },
+    "mixed": {
+      "name": "Mixed",
+      "description": "3 beginner, 4 intermediate and 3 advanced questions."
+    }
+  },
+  "Categories": {
+    "fundamentals": "Fundamentals",
+    "business": "Business",
+    "workflow": "Workflow",
+    "commands": "Commands",
+    "config": "Configuration",
+    "extensibility": "Extensibility",
+    "security": "Security",
+    "automation": "Automation"
+  },
+  "Answer": {
+    "true": "True",
+    "false": "False"
+  },
+  "Play": {
+    "loading": "Loading question…",
+    "progress": "Question {current} of {total}",
+    "score": "Score",
+    "streak": "Streak",
+    "answerGroup": "Your answer",
+    "trueKey": "T",
+    "falseKey": "F",
+    "keyboardHint": "Shortcuts: {trueKey} = True, {falseKey} = False, Enter = next.",
+    "timeLeft": "Time left",
+    "seconds": "{seconds} s",
+    "fiveSecondsLeft": "5 seconds left",
+    "correct": "Correct!",
+    "incorrect": "Incorrect",
+    "timedOut": "Time's up",
+    "correctAnswer": "Correct answer: {answer}",
+    "pointsEarned": "+{points} points",
+    "breakdown": "base {base} + time {timeBonus} + streak {streakBonus}",
+    "learnMore": "Learn more in the docs",
+    "newTab": "(opens in a new tab)",
+    "next": "Next",
+    "seeResult": "See result",
+    "networkError": "Couldn't reach the server.",
+    "retry": "Try again",
+    "expiredTitle": "This game has expired",
+    "expiredText": "Games with no activity for 2 hours are closed.",
+    "notFoundTitle": "Game not found",
+    "notFoundText": "The link may be wrong or the game no longer exists.",
+    "newGame": "New game"
+  },
+  "Result": {
+    "title": "Result",
+    "level": "Level: {level}",
+    "score": "Score",
+    "correct": "Correct",
+    "fraction": "{correct}/{total}",
+    "time": "Total time",
+    "bestStreak": "Best streak",
+    "band": {
+      "low": "Keep exploring",
+      "good": "Good job",
+      "great": "Excellent",
+      "perfect": "Claude Code master"
+    },
+    "byCategory": "Results by category",
+    "review": "Review",
+    "yourAnswer": "Your answer: {answer}",
+    "noAnswer": "none (time's up)",
+    "playAgain": "Play again",
+    "otherLevel": "Choose another level",
+    "share": "Share",
+    "copied": "Text copied to the clipboard.",
+    "shareText": "I scored {score} points on the Claude Code Quiz ({level} level)! {url}"
   }
 }
