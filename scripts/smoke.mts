@@ -7,7 +7,13 @@ if (!base) {
   process.exit(1);
 }
 
+const TIMEOUT_MS = 15_000;
 let failed = 0;
+
+/** fetch with a timeout, so a hung deployment fails the run instead of stalling it. */
+function timedFetch(url: string, init?: RequestInit) {
+  return fetch(url, { ...init, signal: AbortSignal.timeout(TIMEOUT_MS) });
+}
 
 function check(ok: boolean, label: string) {
   if (!ok) failed++;
@@ -15,7 +21,7 @@ function check(ok: boolean, label: string) {
 }
 
 async function json<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(base + path, {
+  const res = await timedFetch(base + path, {
     ...init,
     headers: init?.body ? { "content-type": "application/json" } : undefined,
   });
@@ -24,24 +30,30 @@ async function json<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-for (const locale of ["pt-BR", "en", "de"]) {
-  const res = await fetch(`${base}/${locale}`);
-  const html = await res.text();
-  check(
-    res.ok && html.includes(`lang="${locale}"`),
-    `GET /${locale} → ${res.status}`,
-  );
-  if (locale === "pt-BR") {
+try {
+  for (const locale of ["pt-BR", "en", "de"]) {
+    const res = await timedFetch(`${base}/${locale}`);
+    const html = await res.text();
     check(
-      !!res.headers.get("content-security-policy") &&
-        res.headers.get("x-content-type-options") === "nosniff",
-      "security headers",
+      res.ok && html.includes(`lang="${locale}"`),
+      `GET /${locale} → ${res.status}`,
     );
+    if (locale === "pt-BR") {
+      check(
+        !!res.headers.get("content-security-policy") &&
+          res.headers.get("x-content-type-options") === "nosniff",
+        "security headers",
+      );
+    }
   }
-}
 
-const board = await fetch(`${base}/api/leaderboard?level=beginner&period=all`);
-check(board.ok, `GET /api/leaderboard → ${board.status}`);
+  const board = await timedFetch(
+    `${base}/api/leaderboard?level=beginner&period=all`,
+  );
+  check(board.ok, `GET /api/leaderboard → ${board.status}`);
+} catch (error) {
+  check(false, (error as Error).message);
+}
 
 try {
   const { gameId } = await json<{ gameId: string }>("/api/games", {
