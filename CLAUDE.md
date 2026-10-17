@@ -91,4 +91,4 @@ Browser (client components) → Route Handlers /api/* → src/server/** (pure ga
 
 Commits follow Conventional Commits, enforced by `.githooks-scripts/commit-msg`. Allowed types: `build|chore|ci|data|docs|init|feat|fix|perf|revert|refactor|style|test`, plus optional `(scope)` and `!`. Use `data:` for question-content changes. In a fresh clone, activate the hook with `git config core.hooksPath .githooks-scripts`.
 
-`.github/workflows/ci.yml` runs lint → typecheck → test → test:e2e on every PR and on pushes to `main`.
+`.github/workflows/ci.yml` runs lint → typecheck → test → db:deploy → test:integration → test:e2e on every PR and on pushes to `main`, with a Postgres 17 service container.
