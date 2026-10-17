@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
+import { track } from "@/lib/analytics";
 import { createGame, GameApiError } from "@/lib/game-api";
 import type { GameLevel } from "@/lib/zod-schemas";
 
@@ -20,6 +21,7 @@ export function useStartGame() {
     setError(null);
     try {
       const { gameId } = await createGame(level, locale);
+      track("game_started", { level, locale });
       router.push(`/play/${gameId}`);
     } catch (e) {
       setError(

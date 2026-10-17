@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { track } from "@/lib/analytics";
 
 const SHORT_LABEL = { "pt-BR": "PT", en: "EN", de: "DE" } as const;
 
@@ -38,6 +39,10 @@ function LanguageLinks({ pathname }: { pathname: string }) {
                 hrefLang={locale}
                 lang={locale}
                 aria-current={active ? "true" : undefined}
+                onClick={() => {
+                  if (!active)
+                    track("locale_changed", { from: current, to: locale });
+                }}
                 className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-md px-2 ${
                   active
                     ? "bg-accent text-accent-foreground"

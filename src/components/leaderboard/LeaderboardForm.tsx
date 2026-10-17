@@ -3,6 +3,7 @@
 import { type FormEvent, useId, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { track } from "@/lib/analytics";
 import {
   GameApiError,
   type SubmittedEntry,
@@ -79,6 +80,7 @@ export function LeaderboardForm({
     try {
       const result = await submitLeaderboardEntry(gameId, nickname.trim());
       addMyEntryId(result.entryId);
+      track("leaderboard_submitted", { level });
       setEntry(result);
     } catch (e) {
       const code = e instanceof GameApiError ? e.code : "UNKNOWN";
