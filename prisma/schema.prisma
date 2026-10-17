@@ -1,0 +1,82 @@
+// PRD §6.4. Connection URLs live in prisma.config.ts (CLI) and src/lib/db.ts (runtime), per Prisma 7.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Level {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  MIXED
+}
+
+enum GameStatus {
+  IN_PROGRESS
+  FINISHED
+  EXPIRED
+}
+
+model GameSession {
+  id           String            @id @default(cuid())
+  level        Level
+  locale       String
+  questionIds  String[]
+  currentIndex Int               @default(0)
+  score        Int               @default(0)
+  correctCount Int               @default(0)
+  streak       Int               @default(0)
+  bestStreak   Int               @default(0)
+  totalTimeMs  Int               @default(0)
+  status       GameStatus        @default(IN_PROGRESS)
+  ipHash       String
+  startedAt    DateTime          @default(now())
+  finishedAt   DateTime?
+  answers      GameAnswer[]
+  leaderboard  LeaderboardEntry?
+
+  @@index([status, startedAt])
+}
+
+model GameAnswer {
+  id         String      @id @default(cuid())
+  gameId     String
+  game       GameSession @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  questionId String
+  order      Int
+  servedAt   DateTime
+  answeredAt DateTime?
+  answer     Boolean? // null = timed out
+  isCorrect  Boolean?
+  timeMs     Int?
+  points     Int         @default(0)
+
+  @@unique([gameId, order])
+}
+
+model LeaderboardEntry {
+  id           String      @id @default(cuid())
+  gameId       String      @unique
+  game         GameSession @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  nickname     String
+  level        Level
+  score        Int
+  correctCount Int
+  totalTimeMs  Int
+  createdAt    DateTime    @default(now())
+
+  @@index([level, score(sort: Desc), createdAt])
+}
+
+model RateLimitHit {
+  id        String   @id @default(cuid())
+  key       String // e.g. "games:<ipHash>"
+  createdAt DateTime @default(now())
+
+  @@index([key, createdAt])
+}
