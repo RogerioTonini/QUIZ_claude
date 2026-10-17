@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-**`.llm/prd.md` is the source of truth** (pt-BR). Read it before doing anything. It defines a public True/False web quiz about Claude Code (3 levels + Mixed, 10 questions/game, 30s timer, server-side scoring, public leaderboard, pt-BR/en/de). The step-by-step plan for phases F1–F7 follows PRD §13. F1 (foundation: scaffold, i18n, layout, tooling, CI) and F2 (question bank + content access) are done; game engine, UI and database are not built yet.
+**`.llm/prd.md` is the source of truth** (pt-BR). Read it before doing anything. It defines a public True/False web quiz about Claude Code (3 levels + Mixed, 10 questions/game, 30s timer, server-side scoring, public leaderboard, pt-BR/en/de). The step-by-step plan for phases F1–F7 follows PRD §13. F1 (foundation: scaffold, i18n, layout, tooling, CI), F2 (question bank + content access) and F3 (Prisma schema, game logic, game API) are done; the game UI and the leaderboard are not built yet.
 
 - Build in the phases of PRD §13 (F1 Foundation → F7 Deploy). Each phase must end with `pnpm lint`, `pnpm typecheck` and `pnpm test` all passing.
 - If something isn't covered by the PRD, choose the simplest option, record it in `docs/decisions.md` (next `Dxx` row, pt-BR) and keep going. Read the existing decisions first; they refine the PRD.
@@ -27,17 +27,21 @@ pnpm format          # prettier --write
 pnpm typecheck       # next typegen && tsc --noEmit (typegen creates PageProps/LayoutProps and next/root-params types)
 pnpm test            # Vitest, tests/unit/**/*.test.ts
 pnpm test:e2e        # Playwright (Chromium); builds and serves the app on port 3100 itself
+pnpm test:integration # Vitest, tests/integration/** — route handlers against real Postgres (needs TEST_DATABASE_URL locally, D19)
+pnpm db:migrate      # prisma migrate dev (uses DIRECT_URL via prisma.config.ts)
+pnpm db:deploy       # prisma migrate deploy (CI, production)
+pnpm db:studio
 ```
 
 Single test: `pnpm vitest run tests/unit/messages.test.ts -t "<name>"`, or `pnpm playwright test tests/e2e/i18n.spec.ts -g "<name>"`.
 
 Manual, not in CI: `node scripts/check-doc-urls.mts` checks that every `docUrl` in the question bank answers 2xx.
 
-Planned for F3 (D11): `pnpm db:migrate` (Prisma migrations, uses `DIRECT_URL`) and `pnpm db:studio`.
+Prisma 7.10.1 is pinned (D17). `postinstall` runs `prisma generate` into `src/generated/prisma` (gitignored); import the client from `@/generated/prisma/client` and use the `db` singleton from `src/lib/db.ts`. The schema has no URLs: the CLI reads them in `prisma.config.ts`, the runtime in `db.ts`. The initial migration was written offline (`prisma migrate diff --from-empty --to-schema prisma/schema.prisma --script`); create later ones with `pnpm db:migrate` against the Neon `dev` branch.
 
 **Gotcha:** the Claude Code shell on this machine has `NODE_ENV=development` set. `next build` (and therefore `test:e2e`) then fails prerendering `/_global-error` with "Cannot read properties of null (reading 'useContext')". Run with `$env:NODE_ENV='production'` in the same PowerShell command.
 
-Environment variables (names only in `.env.example`): `DATABASE_URL` (pooled Neon), `DIRECT_URL`, `IP_HASH_SALT`, `NEXT_PUBLIC_SITE_URL`.
+Environment variables (names only in `.env.example`): `DATABASE_URL` (pooled Neon), `DIRECT_URL`, `IP_HASH_SALT`, `NEXT_PUBLIC_SITE_URL`, and `TEST_DATABASE_URL` for integration tests.
 
 ## Next.js 16 specifics
 
@@ -59,9 +63,9 @@ Browser (client components) → Route Handlers /api/* → src/server/** (pure ga
 
 - **The answer never reaches the client early.** `questions.json` is read only through `src/server/content.ts` (`import 'server-only'`). `GET /api/games/:id` must never include `answer`/`explanation`; they come back only from `POST /api/games/:id/answer`. Nothing in `src/server/**` or `src/content/**` may be imported by client components. An E2E test checks that the answer isn't in the HTML or network traffic before the player answers.
 - **The server owns time and scoring.** `GameAnswer.servedAt` is set when the question is first served. Elapsed time = `answeredAt - servedAt`, with a +2s tolerance; anything over 32s counts as a timeout. Reloading the page resumes the same question and the timer does not restart. Scoring (PRD §4): base 100/150/200 by question level (Mixed uses each question's own level), time bonus `floor(base*0.5*remaining/30)` (the +2s tolerance only decides whether it's a timeout; for the bonus, `remaining = max(0, 30s − actual elapsed)`, per D03), and a streak bonus starting at the 3rd consecutive correct answer of +10% of base per step, capped at +50%. A wrong answer or timeout scores 0 and resets the streak.
-- Game logic in `src/server/game/{draw,scoring,session}.ts` is pure and unit-tested. Mixed games draw 3 beginner / 4 intermediate / 3 advanced questions, with no repeats.
+- Game logic in `src/server/game/{draw,scoring,session,summary}.ts` is pure and unit-tested. Mixed games draw 3 beginner / 4 intermediate / 3 advanced questions, with no repeats. `src/server/games.ts` is the I/O layer (Prisma + content) the route handlers in `src/app/api/games/**` call; handlers stay thin (validate with the Zod schemas in `src/lib/zod-schemas.ts`, call the service, map `ApiError` via `handleApiError`). Answer submission uses conditional `updateMany` in a transaction so concurrent answers get 409 (D20).
 - Models: `GameSession` (IN_PROGRESS/FINISHED/EXPIRED; expires lazily after 2h idle), `GameAnswer` (`answer=null` means timeout; second answer → 409), `LeaderboardEntry` (one per `gameId`, only within 30 min of FINISHED; the "week" view covers the last 7 calendar days in UTC, per D05), `RateLimitHit` (Postgres sliding window keyed by `sha256(ip + IP_HASH_SALT)`; raw IPs are never stored).
-- API errors use the shape `{ "error": { "code", "message" } }`. The full contract is in PRD §6.5.
+- API errors use the shape `{ "error": { "code", "message" } }` (`src/lib/api.ts`). The full contract is in PRD §6.5; `GET /api/games/:id` of a finished/expired game returns 200 with `status` and no `question` (D18).
 - Leaderboard tie-break order: score desc → correctCount desc → totalTimeMs asc → createdAt asc.
 - Theme: an inline script in `<head>` (`src/lib/theme.ts`) adds the `dark` class to `<html>` before hydration, based on `localStorage.theme` or `prefers-color-scheme`. Tailwind's `dark:` variant targets that class. Use the color tokens from `globals.css` (`background`, `foreground`, `surface`, `muted`, `border`, `accent`), not raw colors.
 
@@ -87,4 +91,4 @@ Browser (client components) → Route Handlers /api/* → src/server/** (pure ga
 
 Commits follow Conventional Commits, enforced by `.githooks-scripts/commit-msg`. Allowed types: `build|chore|ci|data|docs|init|feat|fix|perf|revert|refactor|style|test`, plus optional `(scope)` and `!`. Use `data:` for question-content changes. In a fresh clone, activate the hook with `git config core.hooksPath .githooks-scripts`.
 
-`.github/workflows/ci.yml` runs lint → typecheck → test → test:e2e on every PR and on pushes to `main`.
+`.github/workflows/ci.yml` runs lint → typecheck → test → db:deploy → test:integration → test:e2e on every PR and on pushes to `main`, with a Postgres 17 service container.
