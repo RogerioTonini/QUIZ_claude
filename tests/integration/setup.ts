@@ -11,7 +11,7 @@ if (process.env.TEST_DATABASE_URL) {
   process.env.DATABASE_URL = process.env.TEST_DATABASE_URL;
 } else if (!process.env.CI) {
   throw new Error(
-    "Set TEST_DATABASE_URL (Neon `test` branch) to run integration tests",
+    "Set TEST_DATABASE_URL (local PGlite or a throwaway database) to run integration tests",
   );
 }
 

@@ -1,7 +1,7 @@
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 
-// Route handlers against a real Postgres: TEST_DATABASE_URL locally (Neon `test` branch),
+// Route handlers against a real Postgres: TEST_DATABASE_URL locally (PGlite or a throwaway database),
 // the service container's DATABASE_URL in CI. Files share the database, so they run serially.
 export default defineConfig({
   resolve: {
