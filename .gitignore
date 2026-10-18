@@ -38,3 +38,4 @@ docs_projeto/*.pdf
 
 # claude code local worktrees
 .claude/worktrees/
+.claude/skills/
