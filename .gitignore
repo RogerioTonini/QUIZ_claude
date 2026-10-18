@@ -24,7 +24,6 @@ playwright/.cache/
 # env
 .env
 .env.*
-!.env.example
 
 # vercel
 .vercel

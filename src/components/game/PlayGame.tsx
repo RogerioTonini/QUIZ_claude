@@ -1,6 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useRef,
+  useState,
+} from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
@@ -64,6 +70,9 @@ export function PlayGame({ gameId }: { gameId: string }) {
   const locale = useLocale() as Locale;
   const router = useRouter();
   const [state, setState] = useState<State>({ kind: "loading" });
+  const statementRef = useRef<HTMLHeadingElement>(null);
+  // Set by reload(): the focused control (Next, Retry) unmounts, so the next question takes focus.
+  const focusStatement = useRef(false);
 
   const load = useCallback(
     () =>
@@ -78,7 +87,16 @@ export function PlayGame({ gameId }: { gameId: string }) {
     void load();
   }, [load]);
 
+  const questionId = state.kind === "question" ? state.question.id : null;
+  useEffect(() => {
+    if (questionId && focusStatement.current) {
+      focusStatement.current = false;
+      statementRef.current?.focus();
+    }
+  }, [questionId]);
+
   function reload() {
+    focusStatement.current = true;
     setState({ kind: "loading" });
     void load();
   }
@@ -136,25 +154,27 @@ export function PlayGame({ gameId }: { gameId: string }) {
   const trueKey = t("trueKey").toLowerCase();
   const falseKey = t("falseKey").toLowerCase();
 
-  useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
-      const target = e.target instanceof Element ? e.target : null;
-      if (target?.closest(TYPING_TARGETS)) return;
+  const onKeyDown = useEffectEvent((e: KeyboardEvent) => {
+    if (e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+    const target = e.target instanceof Element ? e.target : null;
+    if (target?.closest(TYPING_TARGETS)) return;
 
-      if (state.kind === "question") {
-        const key = e.key.toLowerCase();
-        if (key === trueKey) void answer(true);
-        else if (key === falseKey) void answer(false);
-      } else if (state.kind === "feedback" && e.key === "Enter") {
-        // A focused button or link already handles Enter natively.
-        if (target?.closest(CONTROL_TARGETS)) return;
-        next();
-      }
+    if (state.kind === "question") {
+      const key = e.key.toLowerCase();
+      if (key === trueKey) void answer(true);
+      else if (key === falseKey) void answer(false);
+    } else if (state.kind === "feedback" && e.key === "Enter") {
+      // A focused button or link already handles Enter natively.
+      if (target?.closest(CONTROL_TARGETS)) return;
+      next();
     }
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
   });
+
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => onKeyDown(e);
+    window.addEventListener("keydown", listener);
+    return () => window.removeEventListener("keydown", listener);
+  }, []);
 
   if (state.kind === "loading") return <PlaySkeleton />;
 
@@ -218,7 +238,11 @@ export function PlayGame({ gameId }: { gameId: string }) {
           onExpire={() => void answer(null)}
         />
       )}
-      <h1 className="text-xl leading-relaxed font-semibold sm:text-2xl">
+      <h1
+        ref={statementRef}
+        tabIndex={-1}
+        className="text-xl leading-relaxed font-semibold sm:text-2xl"
+      >
         {question.statement}
       </h1>
       {state.kind === "question" ? (

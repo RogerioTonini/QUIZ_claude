@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useState } from "react";
 import { useTranslations } from "next-intl";
 
 const TOTAL_MS = 30_000;
@@ -22,10 +22,7 @@ export function Timer({
   const [remaining, setRemaining] = useState(() =>
     Math.max(0, deadline - Date.now()),
   );
-  const onExpireRef = useRef(onExpire);
-  useEffect(() => {
-    onExpireRef.current = onExpire;
-  });
+  const expire = useEffectEvent(onExpire);
 
   useEffect(() => {
     let fired = false;
@@ -35,7 +32,7 @@ export function Timer({
       if (left === 0 && !fired) {
         fired = true;
         clearInterval(id);
-        onExpireRef.current();
+        expire();
       }
     }, TICK_MS);
     return () => clearInterval(id);
