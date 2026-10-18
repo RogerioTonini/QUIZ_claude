@@ -45,7 +45,7 @@ Prisma 7.10.1 is pinned (D17). `postinstall` runs `prisma generate` into `src/ge
 
 **Gotcha:** the Claude Code shell on this machine has `NODE_ENV=development` set. `next build` (and therefore `test:e2e`) then fails prerendering `/_global-error` with "Cannot read properties of null (reading 'useContext')". Run with `$env:NODE_ENV='production'` in the same PowerShell command.
 
-Environment variables (names only in `.env.example`): `DATABASE_URL` (Supabase transaction pooler), `DIRECT_URL` (session pooler), `IP_HASH_SALT`, `NEXT_PUBLIC_SITE_URL`, and `TEST_DATABASE_URL` for integration tests.
+Environment variables (listed in the README; there is no `.env.example`): `DATABASE_URL` (Supabase transaction pooler), `DIRECT_URL` (session pooler), `IP_HASH_SALT`, `NEXT_PUBLIC_SITE_URL`, and `TEST_DATABASE_URL` for integration tests.
 
 ## Next.js 16 specifics
 

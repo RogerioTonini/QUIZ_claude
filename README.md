@@ -22,7 +22,7 @@ Pré-requisitos: Node 24 e pnpm 10.
 
 ```bash
 pnpm install          # também roda `prisma generate`
-cp .env.example .env.local
+# crie o .env.local com as variáveis da tabela abaixo
 pnpm db:deploy        # aplica as migrações
 pnpm dev              # http://localhost:3000
 ```
