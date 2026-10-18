@@ -79,7 +79,7 @@ Os parâmetros de SSL existem porque o driver `pg` trata `sslmode=require` como 
    - `NEXT_PUBLIC_SITE_URL`: opcional, só se usar um domínio próprio.
 3. Ative o **Web Analytics** no painel do projeto.
 4. Faça o deploy. O build roda `pnpm db:deploy && pnpm build` (`vercel.json`), então as migrações são aplicadas antes de cada build.
-5. Rode `node scripts/smoke.mts https://<seu-domínio>`. Depois, no navegador, jogue uma partida, registre um apelido no ranking e troque de idioma no meio de uma partida.
+5. Rode `node scripts/smoke.mts https://<seu-domínio>`. Para um preview com _Deployment Protection_, gere o segredo em **Settings → Deployment Protection → Protection Bypass for Automation** e defina `VERCEL_AUTOMATION_BYPASS_SECRET` antes de rodar. Depois, no navegador, jogue uma partida, registre um apelido no ranking e troque de idioma no meio de uma partida.
 
 ## Adicionando ou editando perguntas
 

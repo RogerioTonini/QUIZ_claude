@@ -1,6 +1,7 @@
 // Manual smoke test against a deployed site (not run in CI). Plays one beginner game through the
 // API and checks the public pages; it does not post to the leaderboard.
 // Usage: node scripts/smoke.mts https://your-deployment.vercel.app
+// For a preview behind Vercel Deployment Protection, set VERCEL_AUTOMATION_BYPASS_SECRET.
 const base = process.argv[2]?.replace(/\/$/, "");
 if (!base) {
   console.error("Usage: node scripts/smoke.mts <base-url>");
@@ -8,11 +9,18 @@ if (!base) {
 }
 
 const TIMEOUT_MS = 15_000;
+const bypassSecret = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
 let failed = 0;
 
 /** fetch with a timeout, so a hung deployment fails the run instead of stalling it. */
 function timedFetch(url: string, init?: RequestInit) {
-  return fetch(url, { ...init, signal: AbortSignal.timeout(TIMEOUT_MS) });
+  const headers = new Headers(init?.headers);
+  if (bypassSecret) headers.set("x-vercel-protection-bypass", bypassSecret);
+  return fetch(url, {
+    ...init,
+    headers,
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+  });
 }
 
 function check(ok: boolean, label: string) {
